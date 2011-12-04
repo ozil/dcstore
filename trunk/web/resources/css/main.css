@@ -8,7 +8,7 @@ body
 
 #wrapper
 {
-	width: 1280px;
+	width: 1024px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 10px;
@@ -44,7 +44,7 @@ body
 
 #main
 {
-	width: 1070px;
+	width: 824px;
 	margin-top: 15px;
 	margin-left: 210px;
 	border: 1px solid #7AC5CD;
