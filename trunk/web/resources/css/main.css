@@ -1,0 +1,29 @@
+body
+{
+	padding: 0;
+	margin: 0;
+}
+
+#wrapper
+{
+	width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#top
+{
+	text-align: center;
+}
+
+#left
+{
+	float: left;
+	width: 15%;
+}
+
+#content
+{
+	width: 85%;
+}
+
