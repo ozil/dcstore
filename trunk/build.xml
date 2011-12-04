@@ -7,12 +7,15 @@
 	</path>
 
 	<target name="init">
-		<delete dir="build" />
-		<delete dir="dist" />
-		<mkdir dir="build" />
+		<delete>
+			<fileset dir="build" />
+			<dirset dir="build">
+				<exclude name=".svn" />
+			</dirset>
+			<fileset dir="dist" />
+		</delete>
 		<mkdir dir="build/WEB-INF" />
 		<mkdir dir="build/WEB-INF/classes" />
-		<mkdir dir="dist" />
 	</target>
 
 	<target name="build" depends="init">
