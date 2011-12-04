@@ -8,11 +8,15 @@
 	<h:body>
 		<ui:component>
 			<div class="module">
-				<ul>
-					<c:forEach items="${categoriesWeb.getCategories()}" var="category">
-						<li><h:link outcome="category.xhtml" value="${category.name}" /></li>
-					</c:forEach>
-				</ul>
+				<div class="header">Categories</div>
+				<div class="body">
+					<ul>
+						<c:forEach items="${categoriesWeb.getCategories()}" var="category">
+							<li><h:link outcome="category.xhtml" value="${category.name}" /></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<div class="bottom"></div>
 			</div>
 		</ui:component>
 	</h:body>
