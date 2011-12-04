@@ -1,3 +1,10 @@
+<!--
+   This file is a part of dcstore project,
+   licensed under GPLv2
+
+   Dominik Cebula
+   dominikcebula@gmail.com
+-->
 <project name="dcstore" default="deploy">
 	<property name="glassfish" value="/opt/glassfish-3.1.1" />
 	<property name="glassfish.modules" value="${glassfish}/glassfish/modules" />
