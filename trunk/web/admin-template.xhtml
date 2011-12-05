@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   This file is a part of dcstore project,
+   licensed under GPLv2
+  
+   Dominik Cebula
+   dominikcebula@gmail.com
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<h:outputStylesheet name="css/admin.css" />
+	</h:head>
+	<h:body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="appinfo">dcStore Admin Panel</div>
+				
+				<h:link outcome="admin.xhtml" value="Categories"><div class="item"></div></h:link>
+				<h:link outcome="admin-products.xhtml" value="Categories"><div class="item"></div></h:link>
+				<h:link outcome="admin-customers.xhtml" value="Categories"><div class="item"></div></h:link>
+				<h:link outcome="admin-orders.xhtml" value="Categories"><div class="item"></div></h:link>
+				
+				<div id="logout">Logout</div>
+				<div class="clear"></div>
+			</div>
+			<div id="main">
+				<ui:insert name="main" />
+			</div>
+		</div>
+	</h:body>
+</html>
+
