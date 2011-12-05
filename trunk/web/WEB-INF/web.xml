@@ -28,7 +28,7 @@
 		<realm-name>fileRealm</realm-name>
 		<form-login-config>
 			<form-login-page>/admin/admin-login.xhtml</form-login-page>
-			<form-error-page>/admin/admin-login.xhtml</form-error-page>
+			<form-error-page>/admin/admin-error.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 
