@@ -21,7 +21,7 @@ html, body
 
 #header
 {
-	height: 21px;
+	height: 19px;
 	background-color: #74C2E1;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -31,7 +31,7 @@ html, body
 	font-weight: bold;
 }
 
-a
+#header a
 {
 	color: white;
 	font-weight: bold;
@@ -41,31 +41,32 @@ a
 {
 	float: left;
 	margin-right: 45px;
+	padding-top: 1px;
 }
 
 .item 
 {
-	height: 21px;
+	height: 19px;
 	float: left;
 	background-color: #0191C8;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 1px;
 	margin-right: 2px;
 }
 
 .item:hover,
 .item.active
 {
-	margin-top: -10px;
-	height: 31px;
 	background-color: #005B9A;
 }
 
 #logout
 {
 	float: right;
+	padding-top: 1px;
 }
 
 .clear
@@ -80,3 +81,38 @@ a
 	border: 1px #74C2E1 solid;
 	min-height: 100%;
 }
+
+#login
+{
+	margin-left: auto;
+	margin-right: auto;
+	maring-top: 30px;
+	width: 271px;
+}
+
+#login_header
+{
+	padding-left: 10px;
+	font-weight: bold;
+	color: white;
+	background-color: #0191C8;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+#login_body
+{
+	border: 1px solid #0191C8;
+}
+
+#logo
+{
+	width: 135px;
+	height: 55px;
+	background-image: url("#{resource['img:logo.png']}");
+	background-repeat: no-repeat;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+}
+
