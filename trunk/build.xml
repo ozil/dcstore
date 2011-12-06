@@ -10,7 +10,7 @@
 	<property name="glassfish.modules" value="${glassfish}/glassfish/modules" />
 
 	<path id="cp">
-		<pathelement path="${glassfish.modules}/jsf-api.jar" />
+		<pathelement path="${glassfish.modules}/jsf-api.jar;${glassfish.modules}/javax.persistence.jar;${glassfish.modules}/javax.ejb.jar" />
 	</path>
 
 	<target name="init">
@@ -33,6 +33,10 @@
 		<javac srcdir="src" destdir="build/WEB-INF/classes" includeAntRuntime="false">
 			<classpath refid="cp" />
 		</javac>
+		<copy todir="build/WEB-INF/classes/META-INF">
+			<dirset dir="src/META-INF" />
+			<fileset dir="src/META-INF" />
+		</copy>
 	</target>
 
 	<target name="package" depends="build">

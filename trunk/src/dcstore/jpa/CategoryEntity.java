@@ -5,8 +5,18 @@
 // dominikcebula@gmail.com
 package dcstore.jpa;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+@Entity
+@Table(name="dc_categories")
 public class CategoryEntity {
+	@Id
+	@Column(name="id_category")
 	private int id;
+	@Column(name="name")
 	private String name;
 
 	public int getId() {
