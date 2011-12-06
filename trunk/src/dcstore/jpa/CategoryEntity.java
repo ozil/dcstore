@@ -9,9 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name="dc_categories")
+@NamedQuery(name="category.getAll", query="select c from CategoryEntity c")
 public class CategoryEntity {
 	@Id
 	@Column(name="id_category")

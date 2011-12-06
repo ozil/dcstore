@@ -6,9 +6,12 @@
 package dcstore.ejb;
 
 import javax.ejb.Local;
+import java.util.List;
+import dcstore.jpa.CategoryEntity;
 
 @Local
 public interface CategoryBean {
 	public void add(String name);
+	public List<CategoryEntity> getAll();
 }
 

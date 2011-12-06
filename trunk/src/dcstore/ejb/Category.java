@@ -9,6 +9,7 @@ import dcstore.jpa.CategoryEntity;
 import javax.ejb.Stateful;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Stateful
 public class Category implements CategoryBean {
@@ -19,6 +20,10 @@ public class Category implements CategoryBean {
 		CategoryEntity category=new CategoryEntity();
 		category.setName(name);
 		em.persist(category);
+	}
+
+	public List<CategoryEntity> getAll() {
+		return em.createNamedQuery("category.getAll").getResultList();
 	}
 }
 
