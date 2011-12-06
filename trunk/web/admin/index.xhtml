@@ -11,11 +11,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
             xmlns:ui="http://java.sun.com/jsf/facelets"
 			xmlns:h="http://java.sun.com/jsf/html"
-			xmlns:c="http://java.sun.com/jsp/jstl/core">
+			xmlns:c="http://java.sun.com/jsp/jstl/core"
+			xmlns:f="http://java.sun.com/jsf/core">
 	<h:body>
 		<ui:composition template="admin-template.xhtml">
 			<ui:define name="main">
-				<c:forEach items="${categoriesWeb.get}"
+				<h:form>
+					<table id="tbl_category">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>name</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${categoryWeb.getAll()}" var="category">
+								<tr>
+									<td id="col1">${category.id}</td>
+									<c:choose>
+										<c:when test="${request.getParameter('id') == category.id}">
+											<td id="col2"><h:inputText value="${category.name}" /></td>
+											<td id="col3">
+												<h:link value="Save" />
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td id="col2">${category.name}</td>
+											<td id="col3">
+												<h:link value="Edit">
+													<f:param name="id" value="${category.id}" />
+												</h:link>&nbsp;
+												<h:link value="Delete" />
+											</td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</h:form>
 			</ui:define>
 		</ui:composition>
 	</h:body>
