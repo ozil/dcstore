@@ -18,13 +18,16 @@
 		<div id="wrapper">
 			<div id="header">
 				<div id="appinfo">dcStore Admin Panel</div>
+				<h:link outcome="index.xhtml"><div class="item ${adminWeb.isActive('index.xhtml')}">Categories</div></h:link>
+				<h:link outcome="admin-products.xhtml"><div class="item ${adminWeb.isActive('admin-products.xhtml')}">Products</div></h:link>
+				<h:link outcome="admin-customers.xhtml"><div class="item ${adminWeb.isActive('admin-customers.xhtml')}">Customers</div></h:link>
+				<h:link outcome="admin-orders.xhtml"><div class="item ${adminWeb.isActive('admin-orders.xhtml')}">Orders</div></h:link>
 				
-				<h:link outcome="index.xhtml"><div class="item">Categories</div></h:link>
-				<h:link outcome="admin-products.xhtml"><div class="item">Products</div></h:link>
-				<h:link outcome="admin-customers.xhtml"><div class="item">Customers</div></h:link>
-				<h:link outcome="admin-orders.xhtml"><div class="item">Orders</div></h:link>
-				
-				<div id="logout">Logout</div>
+				<div id="logout">
+					<h:form>
+						<h:commandLink action="${adminWeb.logout()}" value="Logout" />
+					</h:form>
+				</div>
 				<div class="clear"></div>
 			</div>
 			<div id="main">

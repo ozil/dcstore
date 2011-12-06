@@ -5,12 +5,12 @@
    Dominik Cebula
    dominikcebula@gmail.com
 -->
-<project name="dcstore" default="deploy">
+<project name="dcstore" default="redeploy">
 	<property name="glassfish" value="/opt/glassfish-3.1.1" />
 	<property name="glassfish.modules" value="${glassfish}/glassfish/modules" />
 
 	<path id="cp">
-		<pathelement path="${glassfish.modules}/jsf-api.jar;${glassfish.modules}/javax.persistence.jar;${glassfish.modules}/javax.ejb.jar" />
+		<pathelement path="${glassfish.modules}/jsf-api.jar;${glassfish.modules}/javax.persistence.jar;${glassfish.modules}/javax.ejb.jar;${glassfish.modules}/javax.servlet.jar" />
 	</path>
 
 	<target name="init">
@@ -41,6 +41,10 @@
 
 	<target name="package" depends="build">
 		<war basedir="build" destfile="dist/${ant.project.name}.war" />
+	</target>
+
+	<target name="redeploy" depends="package">
+		<exec command="asadmin redeploy --name dcstore --properties keepSessions=true dist/${ant.project.name}.war" />
 	</target>
 
 	<target name="deploy" depends="package">
