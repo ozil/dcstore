@@ -15,7 +15,7 @@ import dcstore.ejb.CategoryBean;
 
 @ManagedBean
 @RequestScoped
-public class CategoriesAdminWeb {
+public class CategoryAdminWeb {
 	@EJB
 	private CategoryBean categoryBean;
 
