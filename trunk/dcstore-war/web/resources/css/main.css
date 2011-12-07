@@ -1,0 +1,95 @@
+body
+{
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    font-family: "Georgia";
+}
+
+#wrapper
+{
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+
+#top #logo
+{
+    width: 172px;
+    height: 55px;
+    background-image: url("#{resource['img:logo.png']}");
+    background-repeat: no-repeat;
+    margin-left: 28px;
+    float: left;
+}
+
+#top .content
+{
+    padding-top: 12px;
+}
+
+.clear
+{
+    float: none;
+    clear: both;
+}
+
+#left
+{
+    margin-top: 15px;
+    float: left;
+    width: 200px;
+}
+
+#main
+{
+    width: 824px;
+    margin-top: 15px;
+    margin-left: 210px;
+    border: 1px solid #7AC5CD;
+    border-radius: 10px;
+}
+
+.module .header
+{
+    background-color: #458B00;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-left: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    color: white;
+}
+
+.module .body ul
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 5px;
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+.module .body
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #EEE8CD;
+    border: 1px solid #458B00;
+    font-weight: bold;
+}
+
+.module .body a
+{
+    color: #3366FF;
+}
+
+.module .bottom
+{
+    height: 5px;
+    background-color: #458B00;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
