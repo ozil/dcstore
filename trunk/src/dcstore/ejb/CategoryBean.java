@@ -13,5 +13,6 @@ import dcstore.jpa.CategoryEntity;
 public interface CategoryBean {
 	public void add(String name);
 	public List<CategoryEntity> getAll();
+	public void edit(int id, String name) throws Exception;
 }
 

@@ -25,5 +25,13 @@ public class Category implements CategoryBean {
 	public List<CategoryEntity> getAll() {
 		return em.createNamedQuery("category.getAll").getResultList();
 	}
+
+	public void edit(int id, String name) throws Exception {
+		CategoryEntity category;
+		category=(CategoryEntity)em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
+		if (category==null)
+			throw new Exception("Category with "+id+" not found");
+		category.setName(name);
+	}
 }
 

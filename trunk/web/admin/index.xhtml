@@ -33,7 +33,7 @@
 										<c:when test="${request.getParameter('id') == category.id}">
 											<td id="col2"><h:inputText value="${category.name}" /></td>
 											<td id="col3">
-												<h:link value="Save" />
+												<h:commandButton action="${categoryWeb.edit(category.id, category.name)}" value="Save" />
 											</td>
 										</c:when>
 										<c:otherwise>

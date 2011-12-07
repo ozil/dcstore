@@ -10,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 
 @Entity
 @Table(name="dc_categories")
-@NamedQuery(name="category.getAll", query="select c from CategoryEntity c")
+@NamedQueries({
+	@NamedQuery(name="category.getAll", query="select c from CategoryEntity c"),
+	@NamedQuery(name="category.getById", query="select c from CategoryEntity c where c.id=:id")
+})
 public class CategoryEntity {
 	@Id
 	@Column(name="id_category")
