@@ -141,20 +141,17 @@ a
     width: 90%;
 }
 
-#tbl_category #col1,
-#tbl_product #col1
+#col1
 {
     width: 50px;
 }
 
-#tbl_category #col2,
-#tbl_product #col2
+#col2
 {
     width: 200px;
 }
 
-#tbl_category #col3,
-#tbl_product #col3
+#col3
 {
     width: 150px;
 }

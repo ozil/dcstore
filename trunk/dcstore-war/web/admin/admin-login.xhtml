@@ -23,7 +23,7 @@
                     <form action="j_security_check" method="post">
                         <h:panelGrid columns="2">
                             <h:column>Login:</h:column>
-                            <h:column><input type="text" name="j_username" size="20" /></h:column>
+                            <h:column><input type="text" id="j_username" name="j_username" size="20" /></h:column>
                             <h:column>Password:</h:column>
                             <h:column><input type="password" name="j_password" size="20" /></h:column>
                             <h:column><input type="submit" value="Login" /></h:column>
@@ -33,5 +33,9 @@
                 </div>
             </div>
         </div>
+        
+        <script type="text/javascript">        
+            if (document.getElementById('j_username')) document.getElementById('j_username').focus();
+        </script> 
     </h:body>
 </html>
