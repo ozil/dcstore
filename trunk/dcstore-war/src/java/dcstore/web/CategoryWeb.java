@@ -12,6 +12,7 @@ import dcstore.jpa.CategoryEntity;
 import dcstore.ejb.CategoryBean;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.validation.constraints.Pattern;
 
 @ManagedBean
 @RequestScoped
@@ -20,13 +21,15 @@ public class CategoryWeb {
     @EJB
     private CategoryBean categoryBean;
     private int id;
+    @Pattern(regexp="[A-Za-z0-9-_ ]+")
     private String name;
+    @Pattern(regexp="[A-Za-z0-9-_ ]*")
     private String nameNew;
 
     public String getNameNew() {
         return nameNew;
     }
-
+        
     public void setNameNew(String nameNew) {
         this.nameNew = nameNew;
     }
@@ -53,11 +56,12 @@ public class CategoryWeb {
     
     public void add() throws Exception {
         categoryBean.add(nameNew);
+        this.nameNew="";
     }
 
     public void edit() throws Exception {
         categoryBean.edit(id, name);
-        FacesContext.getCurrentInstance().getExternalContext().dispatch("index.xhtml?id=-1");
+        FacesContext.getCurrentInstance().getExternalContext().dispatch("admin-categories.xhtml?id=-1");
     }
     
     public void del(int id) throws Exception {

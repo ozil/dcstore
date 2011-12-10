@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   This file is a part of dcstore project,
+   licensed under GPLv2
+  
+   Dominik Cebula
+   dominikcebula@gmail.com
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <h:outputStylesheet name="css/admin.css" />
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+            <div id="logo"></div>
+            <div id="login">
+                <div id="login_header">dcStore Admin Panel</div>
+                <div id="login_body">
+                    Wrong username or password, <h:link outcome="admin-login.xhtml" value="try again" />.
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
