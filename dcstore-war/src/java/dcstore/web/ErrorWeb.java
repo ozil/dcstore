@@ -1,7 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+// This file is a part of dcstore project,
+// licensed under GPLv2
+//
+// Dominik Cebula
+// dominikcebula@gmail.com
 package dcstore.web;
 
 import java.io.PrintWriter;
@@ -25,20 +26,12 @@ public class ErrorWeb {
     }
 
     public String getStackTrace() {
-        // Get the current JSF context
         FacesContext context = FacesContext.getCurrentInstance();
         Map requestMap = context.getExternalContext().getRequestMap();
-
-        // Fetch the exception
         Throwable ex = (Throwable) requestMap.get("javax.servlet.error.exception");
-
-        // Create a writer for keeping the stacktrace of the exception
         StringWriter writer = new StringWriter();
         PrintWriter pw = new PrintWriter(writer);
-
-        // Fill the stack trace into the write
         fillStackTrace(ex, pw);
-
         return writer.toString();
     }
 

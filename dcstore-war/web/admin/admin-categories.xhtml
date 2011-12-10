@@ -35,7 +35,7 @@
                                                 ${categoryWeb.setId(category.id)}
                                                 ${categoryWeb.setName(category.name)}
                                                 <h:inputHidden value="${categoryWeb.id}" />
-                                                <h:inputText required="true" requiredMessage="Category name is required" value="${categoryWeb.name}" />
+                                                <h:inputText validatorMessage="Wrong data in category field" required="true" requiredMessage="Category name is required" value="${categoryWeb.name}" />
                                             </td>
                                             <td id="col3">
                                                 <h:commandLink action="${categoryWeb.edit()}" value="Save">
@@ -61,7 +61,7 @@
                         <tr>
                             <h:form>
                                 <td></td>
-                                <td><h:inputText required="true" requiredMessage="Category name is required" value="${categoryWeb.nameNew}" /></td>
+                                <td><h:inputText validatorMessage="Wrong data in category field" required="true" requiredMessage="Category name is required" value="${categoryWeb.nameNew}" /></td>
                                 <td><h:commandLink action="${categoryWeb.add()}" value="Add" /></td>
                             </h:form>
                         </tr>
