@@ -18,7 +18,7 @@
         <div id="wrapper">
             <div id="header">
                 <div id="appinfo">dcStore Admin Panel</div>
-                <h:link outcome="index.xhtml"><div class="item ${adminWeb.isActive('index.xhtml')}">Categories</div></h:link>
+                <h:link outcome="admin-categories.xhtml"><div class="item ${adminWeb.isActive('admin-categories.xhtml')}">Categories</div></h:link>
                 <h:link outcome="admin-products.xhtml"><div class="item ${adminWeb.isActive('admin-products.xhtml')}">Products</div></h:link>
                 <h:link outcome="admin-customers.xhtml"><div class="item ${adminWeb.isActive('admin-customers.xhtml')}">Customers</div></h:link>
                 <h:link outcome="admin-orders.xhtml"><div class="item ${adminWeb.isActive('admin-orders.xhtml')}">Orders</div></h:link>
@@ -32,6 +32,7 @@
             </div>
             <div id="main">
                 <ui:insert name="main" />
+                <h:messages globalOnly="false" />
             </div>
         </div>
     </h:body>

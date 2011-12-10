@@ -9,8 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
 import javax.persistence.NamedQueries;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "dc_categories")
@@ -21,9 +26,13 @@ import javax.persistence.NamedQueries;
 public class CategoryEntity {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id_category")
     private int id;
     @Column(name = "name")
+    @Size(min=1, max=64)
+    @NotNull
+    @Pattern(regexp="[A-Za-z0-9-_ ]+")
     private String name;
 
     public int getId() {
