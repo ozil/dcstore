@@ -28,6 +28,14 @@ public class ProductEntity implements Serializable {
     @Pattern(regexp="/[A-Za-z0-9-_ ]/")
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
