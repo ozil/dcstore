@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -18,6 +21,10 @@ import javax.validation.constraints.Size;
  * @author dcebula
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="product.all", query="select p from ProductEntity p")
+})
+@Table(name="dc_products")
 public class ProductEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -25,7 +32,7 @@ public class ProductEntity implements Serializable {
     private Long id;
     @NotNull
     @Size(min=1, max=64)
-    @Pattern(regexp="/[A-Za-z0-9-_ ]/")
+    @Pattern(regexp="[A-Za-z0-9-_ ]+")
     private String name;
 
     public String getName() {

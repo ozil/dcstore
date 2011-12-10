@@ -10,11 +10,57 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:body>
         <ui:composition template="admin-template.xhtml">
             <ui:define name="main">
-                products editor
+                <table id="tbl_product">
+                    <thead>
+                        <tr>
+                            <th id="col1">id</th>
+                            <th>name</th>
+                            <th>category</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${productWeb.all}"
+                                   var="p">
+                            <tr>
+                                <td>${p.id}</td>
+                                <td>${p.name}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <h:form>
+                                <td id="col1"></td>
+                                <td id="col2">
+                                    <h:inputText value="${productWeb.name}" />
+                                </td>
+                                <td id="col3">
+                                    <h:selectOneMenu required="true"
+                                                     requiredMessage="Please select group for this product"
+                                                     value="${productWeb.group}">
+                                        <f:selectItems value="${categoryWeb.all}"
+                                                       var="p"
+                                                       itemLabel="${p.name}"
+                                                       itemValue="${p.id}" />
+                                    </h:selectOneMenu>
+                                </td>
+                                <td id="col4">
+                                    <h:commandLink action="${productWeb.add()}" 
+                                                   value="Add" />
+                                </td>
+                            </h:form>
+                        </tr>
+                    </tfoot>
+                </table>
             </ui:define>
         </ui:composition>
     </h:body>

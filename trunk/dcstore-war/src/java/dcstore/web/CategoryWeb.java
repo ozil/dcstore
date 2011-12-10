@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.util.List;
 import dcstore.jpa.CategoryEntity;
-import dcstore.ejb.CategoryBean;
+import dcstore.ejb.CategoryBeanLocal;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Pattern;
@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 public class CategoryWeb {
 
     @EJB
-    private CategoryBean categoryBean;
+    private CategoryBeanLocal categoryBean;
     private int id;
     @Pattern(regexp="[A-Za-z0-9-_ ]+")
     private String name;

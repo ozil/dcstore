@@ -5,18 +5,41 @@
 // dominikcebula@gmail.com
 package dcstore.ejb;
 
-import javax.ejb.Local;
-import java.util.List;
 import dcstore.jpa.CategoryEntity;
+import javax.ejb.Stateful;
+import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+import java.util.List;
 
-@Local
-public interface CategoryBean {
+@Stateful
+public class CategoryBean implements CategoryBeanLocal {
 
-    public void add(String name) throws Exception;
+    @PersistenceContext
+    private EntityManager em;    
 
-    public List<CategoryEntity> getAll();
-
-    public void edit(int id, String name) throws Exception;
+    @Override
+    public List<CategoryEntity> getAll() {
+        return em.createNamedQuery("category.getAll").getResultList();
+    }
     
-    public void del(int id) throws Exception;
+    @Override
+    public void add(String name) throws Exception{
+        CategoryEntity category = new CategoryEntity();
+        category.setName(name);
+        em.persist(category);
+    }
+
+    @Override
+    public void edit(int id, String name) throws Exception {
+        CategoryEntity category;
+        category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
+        category.setName(name);
+    }
+    
+    @Override
+    public void del(int id) throws Exception {
+        CategoryEntity category;
+        category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
+        em.remove(category);
+    }
 }

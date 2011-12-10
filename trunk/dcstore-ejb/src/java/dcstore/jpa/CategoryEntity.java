@@ -5,6 +5,7 @@
 // dominikcebula@gmail.com
 package dcstore.jpa;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -23,8 +24,9 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "category.getAll", query = "select c from CategoryEntity c"),
     @NamedQuery(name = "category.getById", query = "select c from CategoryEntity c where c.id=:id")
 })
-public class CategoryEntity {
-
+public class CategoryEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id_category")
