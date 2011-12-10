@@ -20,9 +20,9 @@
                     <thead>
                         <tr>
                             <th id="col1">id</th>
-                            <th>name</th>
-                            <th>category</th>
-                            <th>actions</th>
+                            <th id="col2">name</th>
+                            <th id="col3">category</th>
+                            <th id="col4">actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                             <tr>
                                 <td>${p.id}</td>
                                 <td>${p.name}</td>
-                                <td></td>
+                                <td>${p.category.name}</td>
                                 <td></td>
                             </tr>
                         </c:forEach>

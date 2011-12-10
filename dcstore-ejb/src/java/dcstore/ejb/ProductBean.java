@@ -4,6 +4,7 @@
  */
 package dcstore.ejb;
 
+import dcstore.jpa.CategoryEntity;
 import dcstore.jpa.ProductEntity;
 import java.util.List;
 import javax.ejb.Stateful;
@@ -21,8 +22,10 @@ public class ProductBean implements ProductBeanLocal {
     
     @Override
     public void add(String name, int group) {
+        CategoryEntity category=(CategoryEntity)em.createNamedQuery("category.getById").setParameter("id", group).getSingleResult();        
         ProductEntity product=new ProductEntity();
         product.setName(name);
+        product.setCategory(category);
         em.persist(product);
     }
     

@@ -6,6 +6,7 @@
 package dcstore.jpa;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -36,6 +38,16 @@ public class CategoryEntity implements Serializable {
     @NotNull
     @Pattern(regexp="[A-Za-z0-9-_ ]+")
     private String name;
+    @OneToMany(mappedBy="category")
+    private List<ProductEntity> products;
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
+    }
 
     public int getId() {
         return id;

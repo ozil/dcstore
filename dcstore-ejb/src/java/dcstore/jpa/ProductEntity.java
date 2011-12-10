@@ -5,10 +5,13 @@
 package dcstore.jpa;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,11 +32,24 @@ public class ProductEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_product")
     private Long id;
     @NotNull
     @Size(min=1, max=64)
     @Pattern(regexp="[A-Za-z0-9-_ ]+")
+    @Column(name="name")
     private String name;
+    @ManyToOne
+    @JoinColumn(name="id_category", referencedColumnName="id_category")
+    private CategoryEntity category;
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
 
     public String getName() {
         return name;
