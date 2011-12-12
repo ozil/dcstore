@@ -9,6 +9,10 @@ import javax.ejb.Local;
 import java.util.List;
 import dcstore.jpa.CategoryEntity;
 
+/**
+ *
+ * @author dcebula
+ */
 @Local
 public interface CategoryBeanLocal {
 
@@ -16,7 +20,7 @@ public interface CategoryBeanLocal {
 
     public List<CategoryEntity> getAll();
 
-    public void edit(int id, String name) throws Exception;
-    
-    public void del(int id) throws Exception;
+    public void edit(Long id, String name) throws Exception;
+
+    public void del(Long id) throws Exception;
 }

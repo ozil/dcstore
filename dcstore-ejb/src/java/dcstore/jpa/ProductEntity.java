@@ -26,22 +26,24 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="product.all", query="select p from ProductEntity p")
+    @NamedQuery(name = "product.all", query = "select p from ProductEntity p"),
+    @NamedQuery(name = "product.getById", query = "select p from ProductEntity p where p.id=:id")
 })
-@Table(name="dc_products")
+@Table(name = "dc_products")
 public class ProductEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_product")
+    @Column(name = "id_product")
     private Long id;
     @NotNull
-    @Size(min=1, max=64)
-    @Pattern(regexp="[A-Za-z0-9-_ ]+")
-    @Column(name="name")
+    @Size(min = 1, max = 64)
+    @Pattern(regexp = "[A-Za-z0-9-_ ]+")
+    @Column(name = "name")
     private String name;
     @ManyToOne
-    @JoinColumn(name="id_category", referencedColumnName="id_category")
+    @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private CategoryEntity category;
 
     public CategoryEntity getCategory() {
@@ -72,5 +74,4 @@ public class ProductEntity implements Serializable {
     public String toString() {
         return "dcstore.jpa.ProductEntity[ id=" + id + " ]";
     }
-    
 }

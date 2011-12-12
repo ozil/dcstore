@@ -18,20 +18,35 @@ import javax.persistence.PersistenceContext;
  */
 @Stateful
 public class ProductBean implements ProductBeanLocal {
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
-    public void add(String name, int group) {
-        CategoryEntity category=(CategoryEntity)em.createNamedQuery("category.getById").setParameter("id", group).getSingleResult();        
-        ProductEntity product=new ProductEntity();
+    public void add(String name, Long idCategory) {
+        CategoryEntity category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
+        ProductEntity product = new ProductEntity();
         product.setName(name);
         product.setCategory(category);
         em.persist(product);
     }
-    
+
     @Override
     public List<ProductEntity> getAll() {
         return em.createNamedQuery("product.all").getResultList();
+    }
+
+    @Override
+    public void del(Long id) {
+        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", id).getSingleResult();
+        em.remove(product);
+    }
+
+    @Override
+    public void edit(Long id, String name, Long idCategory) {
+        CategoryEntity category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
+        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", id).getSingleResult();
+        product.setName(name);
+        product.setCategory(category);
     }
 }
