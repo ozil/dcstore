@@ -29,10 +29,56 @@
                         <c:forEach items="${productWeb.all}"
                                    var="p">
                             <tr>
-                                <td>${p.id}</td>
-                                <td>${p.name}</td>
-                                <td>${p.category.name}</td>
-                                <td></td>
+                                <c:choose>
+                                    <c:when test="${request.getParameter('id')==p.id}">
+                                        <h:form>                                            
+                                            ${productWeb.setNameEdit(p.name)}
+                                            ${productWeb.setIdCategoryEdit(p.category.id)}
+                                            
+                                            <td id="col1">${p.id}</td>
+                                            <td id="col2">
+                                                <h:inputText required="true"
+                                                             requiredMessage="Product name is required"
+                                                             validatorMessage="Wrong data in product name field"
+                                                             value="${productWeb.nameEdit}" />
+                                            </td>
+                                            <td id="col3">
+                                                <h:selectOneMenu required="true"
+                                                                 requiredMessage="Please select category for this product"
+                                                                 value="${productWeb.idCategoryEdit}">
+                                                    <f:selectItems value="${categoryWeb.all}"
+                                                                   var="c"
+                                                                   itemLabel="${c.name}"
+                                                                   itemValue="${c.id}" />
+                                                </h:selectOneMenu>
+                                            </td>
+                                            <td>
+                                                ${productWeb.setId(p.id)}
+                                                <h:inputHidden value="${productWeb.id}" />
+                                                <h:commandLink action="${productWeb.edit()}"
+                                                               value="Save">
+                                                    <f:param name="id" value="${p.id}" />
+                                                </h:commandLink>
+                                            </td>
+                                        </h:form>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td id="col1">${p.id}</td>
+                                        <td id="col2">${p.name}</td>
+                                        <td id="col3">${p.category.name}</td>
+                                        <td id="col4">
+                                            <h:form>
+                                                <h:link value="Edit">
+                                                    <f:param name="id" value="${p.id}" />
+                                                </h:link>
+                                                &nbsp;
+                                                <h:commandLink value="Delete"
+                                                               action="${productWeb.delete(p.id)}"
+                                                               onclick="return confirm('Do you really want to delete this product?')" />
+                                            </h:form>
+                                        </td>
+                                    </c:otherwise>
+                                </c:choose>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -41,12 +87,15 @@
                             <h:form>
                                 <td id="col1"></td>
                                 <td id="col2">
-                                    <h:inputText value="${productWeb.name}" />
+                                    <h:inputText required="true"
+                                                 requiredMessage="Product name is required"
+                                                 validatorMessage="Wrong data in product name field"
+                                                 value="${productWeb.name}" />
                                 </td>
                                 <td id="col3">
                                     <h:selectOneMenu required="true"
-                                                     requiredMessage="Please select group for this product"
-                                                     value="${productWeb.group}">
+                                                     requiredMessage="Please select category for this product"
+                                                     value="${productWeb.idCategory}">
                                         <f:selectItems value="${categoryWeb.all}"
                                                        var="p"
                                                        itemLabel="${p.name}"

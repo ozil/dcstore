@@ -15,6 +15,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface ProductBeanLocal {
+
     public List<ProductEntity> getAll();
-    public void add(String name, int group);
+
+    public void add(String name, Long idCategory);
+
+    public void edit(Long id, String name, Long idCategory);
+
+    public void del(Long id);
 }

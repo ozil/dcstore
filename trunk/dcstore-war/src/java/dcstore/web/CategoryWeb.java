@@ -14,31 +14,35 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Pattern;
 
+/**
+ *
+ * @author dcebula
+ */
 @ManagedBean
 @RequestScoped
 public class CategoryWeb {
 
     @EJB
     private CategoryBeanLocal categoryBean;
-    private int id;
-    @Pattern(regexp="[A-Za-z0-9-_ ]+")
+    private Long id;
+    @Pattern(regexp = "[A-Za-z0-9-_ ]+")
     private String name;
-    @Pattern(regexp="[A-Za-z0-9-_ ]*")
+    @Pattern(regexp = "[A-Za-z0-9-_ ]*")
     private String nameNew;
 
     public String getNameNew() {
         return nameNew;
     }
-        
+
     public void setNameNew(String nameNew) {
         this.nameNew = nameNew;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,22 +53,22 @@ public class CategoryWeb {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public List<CategoryEntity> getAll() {
         return categoryBean.getAll();
     }
-    
+
     public void add() throws Exception {
         categoryBean.add(nameNew);
-        this.nameNew="";
+        this.nameNew = "";
     }
 
     public void edit() throws Exception {
         categoryBean.edit(id, name);
         FacesContext.getCurrentInstance().getExternalContext().dispatch("admin-categories.xhtml?id=-1");
     }
-    
-    public void del(int id) throws Exception {
+
+    public void del(Long id) throws Exception {
         categoryBean.del(id);
     }
 }

@@ -11,6 +11,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -19,18 +21,47 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class ProductWeb {
+
     @EJB
     private ProductBeanLocal productBean;
-    
+    private Long id;
+    @Pattern(regexp = "[A-Za-z0-9-_ ]*")
     private String name;
-    private int group;
+    private Long idCategory;
+    @Pattern(regexp = "[A-Za-z0-9-_ ]*")
+    private String nameEdit;
+    private Long idCategoryEdit;
 
-    public int getGroup() {
-        return group;
+    public Long getIdCategoryEdit() {
+        return idCategoryEdit;
     }
 
-    public void setGroup(int group) {
-        this.group = group;
+    public void setIdCategoryEdit(Long idCategoryEdit) {
+        this.idCategoryEdit = idCategoryEdit;
+    }
+
+    public String getNameEdit() {
+        return nameEdit;
+    }
+
+    public void setNameEdit(String nameEdit) {
+        this.nameEdit = nameEdit;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(Long idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName() {
@@ -40,16 +71,28 @@ public class ProductWeb {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /** Creates a new instance of ProductWeb */
     public ProductWeb() {
     }
-    
+
     public void add() {
-        productBean.add(name, group);
+        productBean.add(name, idCategory);
+        this.name = null;
+        this.idCategory = 0L;
     }
-    
+
     public List<ProductEntity> getAll() {
         return productBean.getAll();
+    }
+
+    public void edit() throws Exception {
+        productBean.edit(id, nameEdit, idCategoryEdit);
+
+        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-products.xhtml?id=-1");
+    }
+
+    public void delete(Long id) {
+        productBean.del(id);
     }
 }

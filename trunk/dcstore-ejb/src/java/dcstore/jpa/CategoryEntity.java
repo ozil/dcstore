@@ -20,6 +20,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author dcebula
+ */
 @Entity
 @Table(name = "dc_categories")
 @NamedQueries({
@@ -27,18 +31,18 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "category.getById", query = "select c from CategoryEntity c where c.id=:id")
 })
 public class CategoryEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_category")
-    private int id;
+    private Long id;
     @Column(name = "name")
-    @Size(min=1, max=64)
+    @Size(min = 1, max = 64)
     @NotNull
-    @Pattern(regexp="[A-Za-z0-9-_ ]+")
+    @Pattern(regexp = "[A-Za-z0-9-_ ]+")
     private String name;
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy = "category")
     private List<ProductEntity> products;
 
     public List<ProductEntity> getProducts() {
@@ -49,11 +53,11 @@ public class CategoryEntity implements Serializable {
         this.products = products;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

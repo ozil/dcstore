@@ -11,33 +11,37 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/**
+ *
+ * @author dcebula
+ */
 @Stateful
 public class CategoryBean implements CategoryBeanLocal {
 
     @PersistenceContext
-    private EntityManager em;    
+    private EntityManager em;
 
     @Override
     public List<CategoryEntity> getAll() {
         return em.createNamedQuery("category.getAll").getResultList();
     }
-    
+
     @Override
-    public void add(String name) throws Exception{
+    public void add(String name) throws Exception {
         CategoryEntity category = new CategoryEntity();
         category.setName(name);
         em.persist(category);
     }
 
     @Override
-    public void edit(int id, String name) throws Exception {
+    public void edit(Long id, String name) throws Exception {
         CategoryEntity category;
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
         category.setName(name);
     }
-    
+
     @Override
-    public void del(int id) throws Exception {
+    public void del(Long id) throws Exception {
         CategoryEntity category;
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
         em.remove(category);
