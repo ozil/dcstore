@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -45,6 +46,28 @@ public class ProductEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private CategoryEntity category;
+    @NotNull
+    private double price;
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "id_tax", referencedColumnName = "id_tax")
+    private TaxEntity tax;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public TaxEntity getTax() {
+        return tax;
+    }
+
+    public void setTax(TaxEntity tax) {
+        this.tax = tax;
+    }
 
     public CategoryEntity getCategory() {
         return category;
@@ -68,10 +91,5 @@ public class ProductEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "dcstore.jpa.ProductEntity[ id=" + id + " ]";
     }
 }
