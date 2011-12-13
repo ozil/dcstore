@@ -123,6 +123,18 @@ a
     margin-bottom: 15px;
 }
 
+table
+{
+    border: 1px solid #74C2E1;
+}
+
+th
+{
+    background-color: #74C2E1;
+    color: white;
+    font-weight: bold;
+}
+
 #tbl_category td,
 #tbl_product td,
 #tbl_product th
@@ -154,4 +166,40 @@ a
 #col3
 {
     width: 150px;
+}
+
+fieldset
+{
+    border: 1px solid #005B9A;
+    margin-top: 15px;
+}
+
+fieldset label
+{
+    position: relative;
+    top: -15px;
+    background-color: #74C2E1;
+    padding: 2px;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #005B9A;
+}
+
+fieldset#tax input[type="text"]
+{
+    width: 100px;
+    margin-right: 10px;
+}
+
+fieldset#tax input[type="submit"]
+{
+    margin-right: 2px;
+    width: 80px;
+}
+
+fieldset#tax select
+{
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px;
 }

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./admin-template.xhtml">
+
+            <ui:define name="main">
+                <fieldset id="tax">
+                    <label>Tax rates</label>
+                    <h:form>
+                        <h:selectManyListbox value="${taxWeb.idDelete}">
+                            <f:selectItems value="${taxWeb.all}"
+                                           var="t"
+                                           itemValue="${t.id}"
+                                           itemLabel="${t.rate}" />
+                        </h:selectManyListbox><br />
+                        <h:inputText size="8"                                     
+                                     value="${taxWeb.rateNew}" />
+                        <h:commandButton value="Add"
+                                         action="${taxWeb.add()}" />
+                        <h:commandButton value="Delete"
+                                         action="${taxWeb.del()}" />
+                    </h:form>
+                </fieldset>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
