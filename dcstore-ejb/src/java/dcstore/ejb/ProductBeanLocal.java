@@ -18,7 +18,7 @@ public interface ProductBeanLocal {
 
     public List<ProductEntity> getAll();
 
-    public void add(String name, Long idCategory);
+    public void add(String name, Long idCategory, double price, Long idTax);
 
     public void edit(Long id, String name, Long idCategory);
 

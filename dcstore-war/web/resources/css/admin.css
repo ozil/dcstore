@@ -168,6 +168,11 @@ th
     width: 150px;
 }
 
+#col5
+{
+    width: 100px;
+}
+
 fieldset
 {
     border: 1px solid #005B9A;
@@ -202,4 +207,9 @@ fieldset#tax select
     height: 100px;
     width: 100px;
     margin-bottom: 10px;
+}
+
+div#login table
+{
+    border: none;
 }

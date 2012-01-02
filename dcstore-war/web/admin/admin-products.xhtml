@@ -22,7 +22,9 @@
                             <th id="col1">id</th>
                             <th id="col2">name</th>
                             <th id="col3">category</th>
-                            <th id="col4">actions</th>
+                            <th id="col4">price</th>
+                            <th id="col5">tax</th>
+                            <th id="col6">actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +68,9 @@
                                         <td id="col1">${p.id}</td>
                                         <td id="col2">${p.name}</td>
                                         <td id="col3">${p.category.name}</td>
-                                        <td id="col4">
+                                        <td id="col3">${p.price}</td>
+                                        <td id="col3">${p.tax.rate}</td>
+                                        <td id="col6">
                                             <h:form>
                                                 <h:link value="Edit">
                                                     <f:param name="id" value="${p.id}" />
@@ -91,7 +95,7 @@
                                                  requiredMessage="Product name is required"
                                                  validatorMessage="Wrong data in product name field"
                                                  value="${productWeb.name}" />
-                                </td>
+                                </td>                                
                                 <td id="col3">
                                     <h:selectOneMenu required="true"
                                                      requiredMessage="Please select category for this product"
@@ -103,6 +107,22 @@
                                     </h:selectOneMenu>
                                 </td>
                                 <td id="col4">
+                                    <h:inputText required="true"
+                                                 requiredMessage="Price field is required"
+                                                 validatorMessage="Wrong price"
+                                                 value="${productWeb.price}" />
+                                </td>
+                                <td id="col5">
+                                    <h:selectOneMenu value="${productWeb.idTax}"
+                                                     required="true"
+                                                     requiredMessage="Tax is required">
+                                        <f:selectItems value="${taxWeb.all}"
+                                                       var="t"
+                                                       itemLabel="${t.rate}"
+                                                       itemValue="${t.id}" />
+                                    </h:selectOneMenu>
+                                </td>
+                                <td id="col6">
                                     <h:commandLink action="${productWeb.add()}" 
                                                    value="Add" />
                                 </td>

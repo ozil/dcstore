@@ -7,6 +7,7 @@ package dcstore.ejb;
 
 import dcstore.jpa.CategoryEntity;
 import dcstore.jpa.ProductEntity;
+import dcstore.jpa.TaxEntity;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -23,11 +24,14 @@ public class ProductBean implements ProductBeanLocal {
     private EntityManager em;
 
     @Override
-    public void add(String name, Long idCategory) {
+    public void add(String name, Long idCategory, double price, Long idTax) {
         CategoryEntity category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
+        TaxEntity tax = (TaxEntity) em.createNamedQuery("tax.getById").setParameter("id", idTax).getSingleResult();
         ProductEntity product = new ProductEntity();
         product.setName(name);
         product.setCategory(category);
+        product.setPrice(price);
+        product.setTax(tax);
         em.persist(product);
     }
 
