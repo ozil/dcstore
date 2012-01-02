@@ -31,6 +31,24 @@ public class ProductWeb {
     @Pattern(regexp = "[A-Za-z0-9-_ ]*")
     private String nameEdit;
     private Long idCategoryEdit;
+    private double price;
+    private Long idTax;
+
+    public Long getIdTax() {
+        return idTax;
+    }
+
+    public void setIdTax(Long idTax) {
+        this.idTax = idTax;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public Long getIdCategoryEdit() {
         return idCategoryEdit;
@@ -77,9 +95,11 @@ public class ProductWeb {
     }
 
     public void add() {
-        productBean.add(name, idCategory);
+        productBean.add(name, idCategory, price, idTax);
         this.name = null;
         this.idCategory = 0L;
+        this.price = 0;
+        this.idTax = 0L;
     }
 
     public List<ProductEntity> getAll() {

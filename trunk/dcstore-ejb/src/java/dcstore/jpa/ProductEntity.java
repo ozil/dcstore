@@ -47,6 +47,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private CategoryEntity category;
     @NotNull
+    @Column(name="price")
     private double price;
     @ManyToOne
     @NotNull
