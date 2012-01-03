@@ -16,11 +16,11 @@ import dcstore.jpa.CategoryEntity;
 @Local
 public interface CategoryBeanLocal {
 
-    public void add(String name) throws Exception;
+    public void add(String name);
 
     public List<CategoryEntity> getAll();
 
-    public void edit(Long id, String name) throws Exception;
+    public void edit(Long id, String name);
 
-    public void del(Long id) throws Exception;
+    public void del(Long id);
 }

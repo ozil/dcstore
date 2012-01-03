@@ -9,8 +9,10 @@ import dcstore.ejb.TaxBeanLocal;
 import dcstore.jpa.TaxEntity;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -44,18 +46,35 @@ public class TaxWeb {
     /** Creates a new instance of TaxWeb */
     public TaxWeb() {
     }
-    
+
     public void add() {
-        taxBean.add(rateNew);
-        rateNew=null;
+        try {
+            taxBean.add(rateNew);
+            rateNew = null;
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
-    
+
     public void del() {
-        for (int id : idDelete)
-            taxBean.del(id);
+        try {
+            for (int id : idDelete) {
+                taxBean.del(id);
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 
     public List<TaxEntity> getAll() {
-        return taxBean.getAll();
+        List<TaxEntity> ret = null;
+
+        try {
+            ret = taxBean.getAll();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
+
+        return ret;
     }
 }

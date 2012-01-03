@@ -11,6 +11,7 @@ import java.util.List;
 import dcstore.jpa.CategoryEntity;
 import dcstore.ejb.CategoryBeanLocal;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Pattern;
 
@@ -55,20 +56,40 @@ public class CategoryWeb {
     }
 
     public List<CategoryEntity> getAll() {
-        return categoryBean.getAll();
+        List<CategoryEntity> ret = null;
+
+        try {
+            ret = categoryBean.getAll();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
+
+        return ret;
     }
 
-    public void add() throws Exception {
-        categoryBean.add(nameNew);
-        this.nameNew = "";
+    public void add() {
+        try {
+            categoryBean.add(nameNew);
+            this.nameNew = "";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 
-    public void edit() throws Exception {
-        categoryBean.edit(id, name);
-        FacesContext.getCurrentInstance().getExternalContext().dispatch("admin-categories.xhtml?id=-1");
+    public void edit() {
+        try {
+            categoryBean.edit(id, name);
+            FacesContext.getCurrentInstance().getExternalContext().dispatch("admin-categories.xhtml?id=-1");
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 
-    public void del(Long id) throws Exception {
-        categoryBean.del(id);
+    public void del(Long id) {
+        try {
+            categoryBean.del(id);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 }

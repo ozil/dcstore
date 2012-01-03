@@ -9,6 +9,7 @@ import dcstore.ejb.ProductBeanLocal;
 import dcstore.jpa.ProductEntity;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -95,24 +96,43 @@ public class ProductWeb {
     }
 
     public void add() {
-        productBean.add(name, idCategory, price, idTax);
-        this.name = null;
-        this.idCategory = 0L;
-        this.price = 0;
-        this.idTax = 0L;
+        try {
+            productBean.add(name, idCategory, price, idTax);
+            this.name = null;
+            this.idCategory = 0L;
+            this.price = 0;
+            this.idTax = 0L;
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 
     public List<ProductEntity> getAll() {
-        return productBean.getAll();
+        List<ProductEntity> ret = null;
+
+        try {
+            ret = productBean.getAll();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
+
+        return ret;
     }
 
-    public void edit() throws Exception {
-        productBean.edit(id, nameEdit, idCategoryEdit);
-
-        FacesContext.getCurrentInstance().getExternalContext().redirect("admin-products.xhtml?id=-1");
+    public void edit() {
+        try {
+            productBean.edit(id, nameEdit, idCategoryEdit);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("admin-products.xhtml?id=-1");
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 
     public void delete(Long id) {
-        productBean.del(id);
+        try {
+            productBean.del(id);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+        }
     }
 }
