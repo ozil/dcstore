@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -47,7 +46,7 @@ public class ProductEntity implements Serializable {
     @JoinColumn(name = "id_category", referencedColumnName = "id_category")
     private CategoryEntity category;
     @NotNull
-    @Column(name="price")
+    @Column(name = "price")
     private double price;
     @ManyToOne
     @NotNull

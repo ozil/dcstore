@@ -27,21 +27,21 @@ public class CategoryBean implements CategoryBeanLocal {
     }
 
     @Override
-    public void add(String name) throws Exception {
+    public void add(String name) {
         CategoryEntity category = new CategoryEntity();
         category.setName(name);
         em.persist(category);
     }
 
     @Override
-    public void edit(Long id, String name) throws Exception {
+    public void edit(Long id, String name) {
         CategoryEntity category;
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
         category.setName(name);
     }
 
     @Override
-    public void del(Long id) throws Exception {
+    public void del(Long id) {
         CategoryEntity category;
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
         em.remove(category);

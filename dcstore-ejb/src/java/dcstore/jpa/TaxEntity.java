@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "dc_tax")
 @NamedQueries({
     @NamedQuery(name = "tax.all", query = "select t from TaxEntity t"),
-    @NamedQuery(name="tax.getById", query="select t from TaxEntity t where t.id=:id")
+    @NamedQuery(name = "tax.getById", query = "select t from TaxEntity t where t.id=:id")
 })
 public class TaxEntity implements Serializable {
 

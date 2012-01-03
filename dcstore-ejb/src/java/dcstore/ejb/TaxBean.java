@@ -1,7 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+// This file is a part of dcstore project,
+// licensed under GPLv2
+//
+// Dominik Cebula
+// dominikcebula@gmail.com
 package dcstore.ejb;
 
 import dcstore.jpa.TaxEntity;
@@ -19,17 +20,17 @@ public class TaxBean implements TaxBeanLocal {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void add(double rate) {
-        TaxEntity taxEntity=new TaxEntity();
+        TaxEntity taxEntity = new TaxEntity();
         taxEntity.setRate(rate);
         em.persist(taxEntity);
     }
-    
+
     @Override
     public void del(int idTax) {
-        TaxEntity taxEntity=(TaxEntity)em.createNamedQuery("tax.getById").setParameter("id", idTax).getSingleResult();
+        TaxEntity taxEntity = (TaxEntity) em.createNamedQuery("tax.getById").setParameter("id", idTax).getSingleResult();
         em.remove(taxEntity);
     }
 
