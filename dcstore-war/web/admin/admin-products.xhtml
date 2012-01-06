@@ -36,6 +36,8 @@
                                         <h:form>                                            
                                             ${productWeb.setNameEdit(p.name)}
                                             ${productWeb.setIdCategoryEdit(p.category.id)}
+                                            ${productWeb.setPriceEdit(p.price)}
+                                            ${productWeb.setIdTaxEdit(p.tax.id)}
                                             
                                             <td id="col1">${p.id}</td>
                                             <td id="col2">
@@ -52,6 +54,20 @@
                                                                    var="c"
                                                                    itemLabel="${c.name}"
                                                                    itemValue="${c.id}" />
+                                                </h:selectOneMenu>
+                                            </td>                                            
+                                            <td><h:inputText value="${productWeb.priceEdit}"
+                                                             required="true"
+                                                             validatorMessage="Invalid price value"
+                                                             requiredMessage="Price field is required" /></td>
+                                            <td>
+                                                <h:selectOneMenu value="${productWeb.idTaxEdit}"
+                                                     required="true"
+                                                     requiredMessage="Tax is required">
+                                                    <f:selectItems value="${taxWeb.all}"
+                                                                   var="t"
+                                                                   itemLabel="${t.rate}"
+                                                                   itemValue="${t.id}" />
                                                 </h:selectOneMenu>
                                             </td>
                                             <td>

@@ -20,7 +20,7 @@ public interface ProductBeanLocal {
 
     public void add(String name, Long idCategory, double price, Long idTax);
 
-    public void edit(Long id, String name, Long idCategory);
+    public void edit(Long id, String name, Long idCategory, double price, Long idTax);
 
     public void del(Long id);
 }

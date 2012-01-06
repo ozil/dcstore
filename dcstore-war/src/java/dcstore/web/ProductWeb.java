@@ -34,6 +34,24 @@ public class ProductWeb {
     private Long idCategoryEdit;
     private double price;
     private Long idTax;
+    private double priceEdit;
+    private Long idTaxEdit;
+
+    public Long getIdTaxEdit() {
+        return idTaxEdit;
+    }
+
+    public void setIdTaxEdit(Long idTaxEdit) {
+        this.idTaxEdit = idTaxEdit;
+    }
+
+    public double getPriceEdit() {
+        return priceEdit;
+    }
+
+    public void setPriceEdit(double priceEdit) {
+        this.priceEdit = priceEdit;
+    }
 
     public Long getIdTax() {
         return idTax;
@@ -121,7 +139,7 @@ public class ProductWeb {
 
     public void edit() {
         try {
-            productBean.edit(id, nameEdit, idCategoryEdit);
+            productBean.edit(id, nameEdit, idCategoryEdit, priceEdit, idTaxEdit);
             FacesContext.getCurrentInstance().getExternalContext().redirect("admin-products.xhtml?id=-1");
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
