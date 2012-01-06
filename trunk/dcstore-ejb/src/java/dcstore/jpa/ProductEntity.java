@@ -6,6 +6,7 @@
 package dcstore.jpa;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,6 +45,7 @@ public class ProductEntity implements Serializable {
     private String name;
     @ManyToOne
     @JoinColumn(name = "id_category", referencedColumnName = "id_category")
+    @NotNull
     private CategoryEntity category;
     @NotNull
     @Column(name = "price")
