@@ -49,6 +49,7 @@ body
     margin-left: 210px;
     border: 1px solid #7AC5CD;
     border-radius: 10px;
+    padding: 5px;
 }
 
 .module .header

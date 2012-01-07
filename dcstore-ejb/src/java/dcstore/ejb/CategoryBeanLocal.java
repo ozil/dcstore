@@ -8,6 +8,7 @@ package dcstore.ejb;
 import javax.ejb.Local;
 import java.util.List;
 import dcstore.jpa.CategoryEntity;
+import dcstore.jpa.ProductEntity;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface CategoryBeanLocal {
     public void edit(Long id, String name);
 
     public void del(Long id);
+
+    public List<ProductEntity> getProducts(Long idCategory);
 }

@@ -6,6 +6,7 @@
 package dcstore.ejb;
 
 import dcstore.jpa.CategoryEntity;
+import dcstore.jpa.ProductEntity;
 import javax.ejb.Stateful;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
@@ -45,5 +46,12 @@ public class CategoryBean implements CategoryBeanLocal {
         CategoryEntity category;
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", id).getSingleResult();
         em.remove(category);
+    }
+
+    @Override
+    public List<ProductEntity> getProducts(Long idCategory) {
+        CategoryEntity category;
+        category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
+        return category.getProducts();
     }
 }
