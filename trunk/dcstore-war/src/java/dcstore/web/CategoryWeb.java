@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import java.util.List;
 import dcstore.jpa.CategoryEntity;
 import dcstore.ejb.CategoryBeanLocal;
+import dcstore.jpa.ProductEntity;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -91,5 +92,18 @@ public class CategoryWeb {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
         }
+    }
+
+    public List<ProductEntity> getProducts() {
+        List<ProductEntity> ret = null;
+
+        try {
+            Long idCategory = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            ret = categoryBean.getProducts(idCategory);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching products for category: " + e.getMessage()));
+        }
+
+        return ret;
     }
 }
