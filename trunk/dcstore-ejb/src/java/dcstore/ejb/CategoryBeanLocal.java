@@ -26,4 +26,6 @@ public interface CategoryBeanLocal {
     public void del(Long id);
 
     public List<ProductEntity> getProducts(Long idCategory);
+    
+    public CategoryEntity getById(Long idCategory);
 }

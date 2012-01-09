@@ -35,7 +35,7 @@ public class TaxEntity implements Serializable {
     @Column(name = "id_tax")
     private Long id;
     @Column(name = "rate")
-    private double rate;
+    private int rate;
     @OneToMany(mappedBy = "tax")
     private List<ProductEntity> products;
 
@@ -47,11 +47,11 @@ public class TaxEntity implements Serializable {
         this.products = products;
     }
 
-    public double getRate() {
+    public int getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 

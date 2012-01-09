@@ -93,4 +93,12 @@ public class ProductEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public double getPriceWithTax() {
+        double vt=tax.getRate();
+        vt/=100;
+        vt+=1;
+        
+        return price*vt;
+    }
 }
