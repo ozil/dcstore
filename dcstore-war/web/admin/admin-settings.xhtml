@@ -28,7 +28,9 @@
                                            itemLabel="${t.rate}" />
                         </h:selectManyListbox><br />
                         <h:inputText size="8"                                     
-                                     value="${taxWeb.rateNew}" />
+                                     value="${taxWeb.rateNew}"
+                                     required="true"
+                                     requiredMessage="Tax field required" />
                         <h:commandButton value="Add"
                                          action="${taxWeb.add()}" />
                         <h:commandButton value="Delete"

@@ -106,4 +106,21 @@ public class CategoryWeb {
 
         return ret;
     }
+    
+    public String getCurrentName() {
+        CategoryEntity category = null;
+        Long id = 0L;
+                
+        try {
+            id=Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            if (id>0)
+                category=categoryBean.getById(id);
+        } catch (Exception e) {
+        }
+        
+        if (category!=null)
+            return "Categories >> "+category.getName();
+        else
+            return "Categories";
+    }
 }

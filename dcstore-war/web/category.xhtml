@@ -15,6 +15,10 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:body>
         <ui:composition template="template.xhtml">
+            <ui:define name="breadcrumb">
+                ${categoryWeb.currentName}
+            </ui:define>
+            
             <ui:define name="main">
                 <c:choose>
                     <c:when test="${categoryWeb.products.size()>0}">                                    

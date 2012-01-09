@@ -36,6 +36,24 @@ public class ProductWeb {
     private Long idTax;
     private double priceEdit;
     private Long idTaxEdit;
+    private double priceWithTax;
+    private double priceWithTaxEdit;
+
+    public double getPriceWithTaxEdit() {
+        return priceWithTaxEdit;
+    }
+
+    public void setPriceWithTaxEdit(double priceWithTaxEdit) {
+        this.priceWithTaxEdit = priceWithTaxEdit;
+    }
+
+    public double getPriceWithTax() {
+        return priceWithTax;
+    }
+
+    public void setPriceWithTax(double priceWithTax) {
+        this.priceWithTax = priceWithTax;
+    }
 
     public Long getIdTaxEdit() {
         return idTaxEdit;
@@ -152,5 +170,9 @@ public class ProductWeb {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
         }
+    }
+    
+    public void calcPrice() {
+        this.price=5;
     }
 }

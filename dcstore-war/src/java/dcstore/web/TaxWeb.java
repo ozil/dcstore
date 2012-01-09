@@ -24,7 +24,7 @@ public class TaxWeb {
 
     @EJB
     private TaxBeanLocal taxBean;
-    private Double rateNew;
+    private Integer rateNew;
     private int[] idDelete;
 
     public int[] getIdDelete() {
@@ -35,11 +35,11 @@ public class TaxWeb {
         this.idDelete = idDelete;
     }
 
-    public Double getRateNew() {
+    public Integer getRateNew() {
         return rateNew;
     }
 
-    public void setRateNew(Double rateNew) {
+    public void setRateNew(Integer rateNew) {
         this.rateNew = rateNew;
     }
 

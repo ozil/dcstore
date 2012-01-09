@@ -2,11 +2,19 @@ body
 {
     margin: 0;
     padding: 0;
+    color: #333333;
+    font-family: Verdana,Helvetica,sans-serif;
+    font-size: 77%;
 }
 
 html, body
 {
     height: 97%;
+}
+
+a
+{
+    color: #3366FF;
 }
 
 #wrapper
@@ -26,10 +34,8 @@ a
 
 #header
 {
-    height: 19px;
-    background-color: #74C2E1;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    height: 20px;
+    background: url("#{resource['img:header.gif']}");
     padding-left: 15px;
     padding-right: 15px;
     color: white;
@@ -53,9 +59,10 @@ a
 {
     height: 19px;
     float: left;
-    background-color: #0191C8;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    background: url("#{resource['img:header.gif']}");
+    background-position: 0px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 1px;
@@ -65,7 +72,8 @@ a
 .item:hover,
 .item.active
 {
-    background-color: #005B9A;
+    background: url("#{resource['img:header.gif']}");
+    background-position: 0px 20px;
 }
 
 #logout
@@ -83,7 +91,8 @@ a
 #main
 {
     background-color: white;
-    border: 1px #74C2E1 solid;
+    border: 1px #81B1DB solid;
+    border-top: none;
     padding: 5px 5px 0px 5px;
     min-height: 100%;
 }
@@ -99,16 +108,17 @@ a
 #login_header
 {
     padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-weight: bold;
     color: white;
-    background-color: #0191C8;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    background: url("#{resource['img:header.gif']}");
 }
 
 #login_body
 {
-    border: 1px solid #0191C8;
+    border: 1px #81B1DB solid;
+    border-top: none;
     padding: 2px;
 }
 

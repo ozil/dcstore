@@ -22,7 +22,7 @@ public class TaxBean implements TaxBeanLocal {
     private EntityManager em;
 
     @Override
-    public void add(double rate) {
+    public void add(int rate) {
         TaxEntity taxEntity = new TaxEntity();
         taxEntity.setRate(rate);
         em.persist(taxEntity);

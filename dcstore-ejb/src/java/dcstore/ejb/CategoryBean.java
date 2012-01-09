@@ -54,4 +54,11 @@ public class CategoryBean implements CategoryBeanLocal {
         category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
         return category.getProducts();
     }
+    
+    @Override
+    public CategoryEntity getById(Long idCategory) {
+        CategoryEntity category = null;
+        category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
+        return category;
+    }
 }
