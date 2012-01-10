@@ -27,15 +27,15 @@ public class AdminWeb {
         }
     }
 
-    public void logout() throws Exception {
+    public String logout() throws Exception {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
         if (req.getRemoteUser() == null) {
-            return;
+            return "/admin/index.xhtml";
         }
 
         req.logout();
-        req.getRequestDispatcher("/admin/admin-login.xhtml").forward(req, res);
+        return "/admin/index.xhtml";
     }
 }
