@@ -117,7 +117,7 @@ a
 
 #login_body
 {
-    border: 1px #81B1DB solid;
+    border: 1px #d41e2a solid;
     border-top: none;
     padding: 2px;
 }
@@ -222,4 +222,14 @@ fieldset#tax select
 div#login table
 {
     border: none;
+}
+
+#main tr:nth-child(odd)
+{
+    background: gainsboro;
+}
+
+#main tr:last-child
+{
+    background: none;
 }

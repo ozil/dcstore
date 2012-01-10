@@ -174,5 +174,5 @@ public class ProductWeb {
     
     public void calcPrice() {
         this.price=5;
-    }
+    }   
 }

@@ -112,6 +112,9 @@
                                                 <h:commandLink value="Delete"
                                                                action="${productWeb.delete(p.id)}"
                                                                onclick="return confirm('Do you really want to delete this product?')" />
+                                                &nbsp;
+                                                <h:commandLink value="Images"
+                                                               action="${imagesWeb.go(p.id)}" />
                                             </h:form>
                                         </td>
                                     </c:otherwise>
