@@ -35,7 +35,7 @@ a
 #header
 {
     height: 20px;
-    background: url("#{resource['img:header.gif']}");
+    background: url("#{resource['img:headerAdmin.gif']}");
     padding-left: 15px;
     padding-right: 15px;
     color: white;
@@ -59,7 +59,7 @@ a
 {
     height: 19px;
     float: left;
-    background: url("#{resource['img:header.gif']}");
+    background: url("#{resource['img:headerAdmin.gif']}");
     background-position: 0px 30px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -72,7 +72,7 @@ a
 .item:hover,
 .item.active
 {
-    background: url("#{resource['img:header.gif']}");
+    background: url("#{resource['img:headerAdmin.gif']}");
     background-position: 0px 20px;
 }
 
@@ -91,7 +91,7 @@ a
 #main
 {
     background-color: white;
-    border: 1px #81B1DB solid;
+    border: 1px #d41e2a solid;
     border-top: none;
     padding: 5px 5px 0px 5px;
     min-height: 100%;
@@ -112,7 +112,7 @@ a
     padding-bottom: 5px;
     font-weight: bold;
     color: white;
-    background: url("#{resource['img:header.gif']}");
+    background: url("#{resource['img:headerAdmin.gif']}");
 }
 
 #login_body
@@ -135,12 +135,12 @@ a
 
 table
 {
-    border: 1px solid #74C2E1;
+    border: 1px solid #d41e2a;
 }
 
 th
 {
-    background-color: #74C2E1;
+    background-color: #d41e2a;
     color: white;
     font-weight: bold;
 }
@@ -185,7 +185,7 @@ th
 
 fieldset
 {
-    border: 1px solid #005B9A;
+    border: 1px solid #d41e2a;
     margin-top: 15px;
 }
 
@@ -193,11 +193,11 @@ fieldset label
 {
     position: relative;
     top: -15px;
-    background-color: #74C2E1;
+    background-color: #d41e2a;
     padding: 2px;
     color: white;
     font-weight: bold;
-    border: 1px solid #005B9A;
+    border: 1px solid #d41e2a;
 }
 
 fieldset#tax input[type="text"]
