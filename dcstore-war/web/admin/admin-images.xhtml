@@ -1,5 +1,13 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   This file is a part of dcstore project,
+   licensed under GPLv2
+  
+   Dominik Cebula
+   dominikcebula@gmail.com
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -13,8 +21,12 @@
                 <h:link value="Go back to product list"
                         outcome="admin-products.xhtml" />
                 
-                <h:form  enctype="multipart/form-data">
-                    <t:inputFileUpload />
+                <h:form  id="uploadForm" enctype="multipart/form-data">
+                    <t:inputFileUpload value="${imagesWeb.file}" />
+                    <h:commandButton value="Upload image"
+                                     action="${imagesWeb.add()}" />
+                    
+                    <h:messages for="uploadForm" />
                 </h:form>
             </ui:define>
 
