@@ -46,6 +46,14 @@
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
+    <context-param>
+        <param-name>imgdir</param-name>
+        <param-value>/opt/glassfish-3.1.1/glassfish/domains/domain1/docroot/pub</param-value>
+    </context-param>
+    <context-param>
+        <param-name>imgurl</param-name>
+        <param-value>http://localhost:8080/pub</param-value>
+    </context-param>
     <filter>
         <filter-name>Extensions Filter</filter-name>
         <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>

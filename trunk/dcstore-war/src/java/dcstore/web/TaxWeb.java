@@ -52,7 +52,7 @@ public class TaxWeb {
             taxBean.add(rateNew);
             rateNew = null;
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while adding tax"));
         }
     }
 
@@ -62,7 +62,7 @@ public class TaxWeb {
                 taxBean.del(id);
             }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting tax"));
         }
     }
 
@@ -72,7 +72,7 @@ public class TaxWeb {
         try {
             ret = taxBean.getAll();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while getting tax list"));
         }
 
         return ret;

@@ -55,7 +55,7 @@ public class ProductEntity implements Serializable {
     @NotNull
     @JoinColumn(name = "id_tax", referencedColumnName = "id_tax")
     private TaxEntity tax;
-    @OneToMany(mappedBy="product")
+    @OneToMany(mappedBy = "product")
     private List<ImageEntity> images;
 
     public List<ImageEntity> getImages() {
@@ -105,12 +105,17 @@ public class ProductEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public double getPriceWithTax() {
-        double vt=tax.getRate();
-        vt/=100;
-        vt+=1;
-        
-        return price*vt;
+        double vt = tax.getRate();
+        vt /= 100;
+        vt += 1;
+
+        price *= vt;
+        price *= 100;
+        price = Math.round(price);
+        price /= 100;
+
+        return price;
     }
 }

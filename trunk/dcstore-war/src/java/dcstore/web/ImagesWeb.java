@@ -9,6 +9,7 @@ import dcstore.ejb.ImageBeanLocal;
 import dcstore.ejb.ProductBeanLocal;
 import dcstore.jpa.ImageEntity;
 import dcstore.jpa.ProductEntity;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 import javax.ejb.EJB;
@@ -70,8 +71,10 @@ public class ImagesWeb {
 
     public String getImgDir() {
         String path;
-        path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("");
-        path += "/resources/userdata/img/";
+        path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgdir");
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
 
         return path;
     }
@@ -81,16 +84,21 @@ public class ImagesWeb {
         path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
         return path;
     }
-    
+
     public String getImgURL(Long idProduct, Long idImage) {
         String path;
-        path="/resources/userdata/img/";
-        path+=idProduct.toString() + "-" + idImage.toString() + ".jpg";
-        
+        path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgurl");
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
+        path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
+
         return path;
     }
 
     public void add() {
+        Long idImage = -1L;
+        
         try {
             if (!FilenameUtils.getExtension(file.getName()).equals("jpg")) {
                 throw new Exception("Only jpg files are supported");
@@ -99,17 +107,24 @@ public class ImagesWeb {
             if (this.getIdProduct() == null) {
                 throw new Exception("Could not read id product");
             }
-
-            Long idImage;
+            
             idImage = imageBean.add(this.getIdProduct());
             if (idImage <= 0) {
-                throw new Exception("Image perservation failed");
+                throw new Exception("Getting new image id failed");
             }
 
             FileOutputStream out = new FileOutputStream(this.getImgPath(idProduct, idImage));
             IOUtils.copy(file.getInputStream(), out);
             out.close();
         } catch (Exception e) {
+            try {
+                if (idImage>0) {
+                    imageBean.del(idImage);
+                }
+            } catch (Exception ex) {
+                FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Rollbacking image from db failed"));
+            }
+            
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("File upload error: " + e.getMessage()));
         }
     }
@@ -132,5 +147,33 @@ public class ImagesWeb {
         }
 
         return images;
+    }
+    
+    public void del() {
+        Long idImage = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+        try {
+            String path = getImgPath(idProduct, idImage);
+            File f = new File(path);
+            imageBean.del(idImage);
+            f.delete();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting image"));
+        }
+    }
+    
+    public boolean isCover(Long idImage) {
+        ImageEntity image;
+        image = imageBean.get(idImage);
+        return image.isCover();
+    }
+    
+    public void toggleCover() {
+        Long idImage;
+        try {
+            idImage=Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            imageBean.toggleCover(idImage);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while changing cover flag"));
+        }
     }
 }

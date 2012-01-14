@@ -21,33 +21,60 @@ public class ImageBean implements ImageBeanLocal {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public Long add(Long idProduct) {
-        ProductEntity product=(ProductEntity)em.createNamedQuery("product.getById").setParameter("id", idProduct).getSingleResult();
-        ImageEntity image=new ImageEntity();
-        
+        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", idProduct).getSingleResult();
+        ImageEntity image = new ImageEntity();
+
         image.setPosition(0);
         image.setCover(false);
         image.setProduct(product);
-        
+
         em.persist(image);
         em.flush();
-        
+
         return image.getId();
     }
-    
+
     @Override
     public List<ImageEntity> getAll() {
         List<ImageEntity> images;
-        images=em.createNamedQuery("image.getAll").getResultList();
+        images = em.createNamedQuery("image.getAll").getResultList();
         return images;
     }
-    
+
     @Override
     public List<ImageEntity> getForProduct(Long idProduct) {
         List<ImageEntity> images;
-        images=em.createNamedQuery("image.getForProduct").setParameter("id", idProduct).getResultList();
+        images = em.createNamedQuery("image.getForProduct").setParameter("id", idProduct).getResultList();
         return images;
+    }
+
+    @Override
+    public void del(Long idImage) {
+        ImageEntity image = (ImageEntity) em.createNamedQuery("image.getById").setParameter("id", idImage).getSingleResult();
+        em.remove(image);
+    }
+
+    @Override
+    public ImageEntity get(Long idImage) {
+        ImageEntity image = (ImageEntity) em.createNamedQuery("image.getById").setParameter("id", idImage).getSingleResult();
+        return image;
+    }
+
+    @Override
+    public void toggleCover(Long idImage) {
+        ImageEntity image = (ImageEntity) em.createNamedQuery("image.getById").setParameter("id", idImage).getSingleResult();
+        Long idProduct;
+        idProduct = image.getProduct().getId();
+
+        List<ImageEntity> images;
+        images = em.createNamedQuery("image.getForProduct").setParameter("id", idProduct).getResultList();
+        for (ImageEntity img : images) {
+            img.setCover(false);
+        }
+
+        image.setCover(true);
     }
 }

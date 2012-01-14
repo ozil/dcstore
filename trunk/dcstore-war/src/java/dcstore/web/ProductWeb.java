@@ -139,7 +139,7 @@ public class ProductWeb {
             this.price = 0;
             this.idTax = 0L;
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while adding product"));
         }
     }
 
@@ -149,7 +149,7 @@ public class ProductWeb {
         try {
             ret = productBean.getAll();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing getting product list"));
         }
 
         return ret;
@@ -160,7 +160,7 @@ public class ProductWeb {
             productBean.edit(id, nameEdit, idCategoryEdit, priceEdit, idTaxEdit);
             FacesContext.getCurrentInstance().getExternalContext().redirect("admin-products.xhtml?id=-1");
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while editing product"));
         }
     }
 
@@ -168,7 +168,7 @@ public class ProductWeb {
         try {
             productBean.del(id);
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting product"));
         }
     }
     
