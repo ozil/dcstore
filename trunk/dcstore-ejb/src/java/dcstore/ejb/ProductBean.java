@@ -24,6 +24,12 @@ public class ProductBean implements ProductBeanLocal {
     private EntityManager em;
 
     @Override
+    public ProductEntity getById(Long idProduct) {
+        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", idProduct).getSingleResult();
+        return product;
+    }
+
+    @Override
     public void add(String name, Long idCategory, double price, Long idTax) {
         CategoryEntity category = (CategoryEntity) em.createNamedQuery("category.getById").setParameter("id", idCategory).getSingleResult();
         TaxEntity tax = (TaxEntity) em.createNamedQuery("tax.getById").setParameter("id", idTax).getSingleResult();

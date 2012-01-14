@@ -17,15 +17,15 @@ import dcstore.jpa.ProductEntity;
 @Local
 public interface CategoryBeanLocal {
 
-    public void add(String name);
+    void add(String name);
 
-    public List<CategoryEntity> getAll();
+    List<CategoryEntity> getAll();
 
-    public void edit(Long id, String name);
+    void edit(Long id, String name);
 
-    public void del(Long id);
+    void del(Long id);
 
-    public List<ProductEntity> getProducts(Long idCategory);
-    
-    public CategoryEntity getById(Long idCategory);
+    List<ProductEntity> getProducts(Long idCategory);
+
+    CategoryEntity getById(Long idCategory);
 }

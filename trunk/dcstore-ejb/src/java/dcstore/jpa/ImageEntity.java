@@ -1,7 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+// This file is a part of dcstore project,
+// licensed under GPLv2
+//
+// Dominik Cebula
+// dominikcebula@gmail.com
 package dcstore.jpa;
 
 import java.io.Serializable;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +24,14 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name="dc_images")
+@NamedQueries({
+        @NamedQuery(name="image.getAll", query="select i from ImageEntity i order by i.position"),
+        @NamedQuery(name="image.getForProduct",
+                    query="select i "+
+                          "from ImageEntity i "+
+                          "where i.product.id=:id "+
+                          "order by i.position")
+})
 public class ImageEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
