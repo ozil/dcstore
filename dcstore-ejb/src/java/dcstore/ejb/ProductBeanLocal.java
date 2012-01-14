@@ -16,11 +16,13 @@ import javax.ejb.Local;
 @Local
 public interface ProductBeanLocal {
 
-    public List<ProductEntity> getAll();
+    List<ProductEntity> getAll();
+    
+    ProductEntity getById(Long idProduct);
 
-    public void add(String name, Long idCategory, double price, Long idTax);
+    void add(String name, Long idCategory, double price, Long idTax);
 
-    public void edit(Long id, String name, Long idCategory, double price, Long idTax);
+    void edit(Long id, String name, Long idCategory, double price, Long idTax);
 
-    public void del(Long id);
+    void del(Long id);
 }

@@ -5,6 +5,8 @@
 // dominikcebula@gmail.com
 package dcstore.ejb;
 
+import dcstore.jpa.ImageEntity;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,7 +15,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface ImageBeanLocal {
-    
+
     Long add(Long idProduct);
+    
+    List<ImageEntity> getAll();
+    
+    List<ImageEntity> getForProduct(Long idProduct);
     
 }

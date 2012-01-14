@@ -16,9 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface TaxBeanLocal {
 
-    public void add(int rate);
+    void add(int rate);
 
-    public void del(int idTax);
+    void del(int idTax);
 
-    public List<TaxEntity> getAll();
+    List<TaxEntity> getAll();
 }

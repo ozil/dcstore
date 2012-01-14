@@ -18,6 +18,8 @@
         <ui:composition template="./admin-template.xhtml">
 
             <ui:define name="main">
+                <div id="HeaderInfo">${imagesWeb.headerInfo}</div>
+                
                 <h:link value="Go back to product list"
                         outcome="admin-products.xhtml" />
                 
@@ -28,6 +30,20 @@
                     
                     <h:messages for="uploadForm" />
                 </h:form>
+                
+                <h:dataTable value="${imagesWeb.images}"
+                             var="img">
+                    <h:column>
+                        ${img.id}
+                    </h:column>
+                    <h:column>
+                        <h:graphicImage value="${imagesWeb.getImgURL(img.product.id, img.id)}"
+                                        width="100" />
+                    </h:column>
+                    <h:column>
+                        <h:link value="Delete" />
+                    </h:column>
+                </h:dataTable>
             </ui:define>
 
         </ui:composition>

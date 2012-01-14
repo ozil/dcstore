@@ -7,6 +7,7 @@ package dcstore.ejb;
 
 import dcstore.jpa.ImageEntity;
 import dcstore.jpa.ProductEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,4 +37,17 @@ public class ImageBean implements ImageBeanLocal {
         return image.getId();
     }
     
+    @Override
+    public List<ImageEntity> getAll() {
+        List<ImageEntity> images;
+        images=em.createNamedQuery("image.getAll").getResultList();
+        return images;
+    }
+    
+    @Override
+    public List<ImageEntity> getForProduct(Long idProduct) {
+        List<ImageEntity> images;
+        images=em.createNamedQuery("image.getForProduct").setParameter("id", idProduct).getResultList();
+        return images;
+    }
 }
