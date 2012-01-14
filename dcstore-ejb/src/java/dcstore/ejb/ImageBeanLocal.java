@@ -22,4 +22,10 @@ public interface ImageBeanLocal {
     
     List<ImageEntity> getForProduct(Long idProduct);
     
+    void del(Long idImage);
+    
+    ImageEntity get(Long idImage);
+    
+    void toggleCover(Long idImage);
+    
 }

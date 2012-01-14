@@ -62,7 +62,7 @@ public class CategoryWeb {
         try {
             ret = categoryBean.getAll();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while getting category list"));
         }
 
         return ret;
@@ -73,7 +73,7 @@ public class CategoryWeb {
             categoryBean.add(nameNew);
             this.nameNew = "";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while adding category"));
         }
     }
 
@@ -82,7 +82,7 @@ public class CategoryWeb {
             categoryBean.edit(id, name);
             FacesContext.getCurrentInstance().getExternalContext().dispatch("admin-categories.xhtml?id=-1");
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while editing category"));
         }
     }
 
@@ -90,7 +90,7 @@ public class CategoryWeb {
         try {
             categoryBean.del(id);
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while processing request: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting category"));
         }
     }
 
@@ -101,7 +101,7 @@ public class CategoryWeb {
             Long idCategory = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
             ret = categoryBean.getProducts(idCategory);
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching products for category: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching products for category"));
         }
 
         return ret;

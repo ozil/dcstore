@@ -16,28 +16,28 @@
     <h:body>
         <ui:composition template="admin-template.xhtml">
             <ui:define name="main">                                       
-                <table id="tbl_category">
+                <table id="tbl_category" class="actions">
                     <thead>
                         <tr>
-                            <th id="col1">id</th>
-                            <th id="col2">name</th>
-                            <th id="col3">actions</th>
+                            <th class="col1">id</th>
+                            <th class="col2">name</th>
+                            <th class="col3">actions</th>
                         </tr>
                     </thead>
                     <tbody>                            
                         <c:forEach items="${categoryWeb.getAll()}" var="category">
                             <tr>
-                                <td id="col1">${category.id}</td>
+                                <td class="col1">${category.id}</td>
                                 <c:choose>
                                     <c:when test="${request.getParameter('id') == category.id}">
                                         <h:form>
-                                            <td id="col2">
+                                            <td class="col2">
                                                 ${categoryWeb.setId(category.id)}
                                                 ${categoryWeb.setName(category.name)}
                                                 <h:inputHidden value="${categoryWeb.id}" />
                                                 <h:inputText validatorMessage="Wrong data in category field" required="true" requiredMessage="Category name is required" value="${categoryWeb.name}" />
                                             </td>
-                                            <td id="col3">
+                                            <td class="col3">
                                                 <h:commandLink action="${categoryWeb.edit()}" value="Save">
                                                     <f:param name="id" value="${category.id}" />
                                                 </h:commandLink>
@@ -45,8 +45,8 @@
                                         </h:form>
                                     </c:when>
                                     <c:otherwise>
-                                        <td id="col2">${category.name}</td>
-                                        <td id="col3">
+                                        <td class="col2">${category.name}</td>
+                                        <td class="col3">
                                             <h:form>
                                                 <h:link value="Edit">
                                                     <f:param name="id" value="${category.id}" />

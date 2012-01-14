@@ -147,7 +147,9 @@ th
 
 #tbl_category td,
 #tbl_product td,
-#tbl_product th
+#tbl_product th,
+#tbl_images td,
+#tbl_images th
 {
     text-align: center;
 }
@@ -163,22 +165,27 @@ th
     width: 90%;
 }
 
-#col1
+.col1
 {
     width: 50px;
 }
 
-#col2
+.col2
 {
     width: 200px;
 }
 
-#col3
+.col3
 {
     width: 150px;
 }
 
-#col5
+.col4
+{
+    width: 150px;
+}
+
+.col5
 {
     width: 100px;
 }
@@ -229,7 +236,19 @@ div#login table
     background: gainsboro;
 }
 
-#main tr:last-child
+#main .actions tr:last-child
 {
     background: none;
+}
+
+#HeaderInfo
+{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#uploadForm
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

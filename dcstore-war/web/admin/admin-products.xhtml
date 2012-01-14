@@ -16,16 +16,16 @@
     <h:body>
         <ui:composition template="admin-template.xhtml">
             <ui:define name="main">
-                <table id="tbl_product">
+                <table id="tbl_product" class="actions">
                     <thead>
                         <tr>
-                            <th id="col1">id</th>
-                            <th id="col2">name</th>
-                            <th id="col3">category</th>
-                            <th id="col4">price</th>
-                            <th id="col5">tax</th>
-                            <th id="col6">price with tax</th>
-                            <th id="col7">actions</th>
+                            <th class="col1">id</th>
+                            <th class="col2">name</th>
+                            <th class="col3">category</th>
+                            <th class="col4">price</th>
+                            <th class="col5">tax</th>
+                            <th class="col6">price with tax</th>
+                            <th class="col7">actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                                             ${productWeb.setIdTaxEdit(p.tax.id)}
                                             ${productWeb.setPriceWithTaxEdit(p.priceWithTax)}
                                             
-                                            <td id="col1">${p.id}</td>
-                                            <td id="col2">
+                                            <td class="col1">${p.id}</td>
+                                            <td class="col2">
                                                 <h:inputText required="true"
                                                              requiredMessage="Product name is required"
                                                              validatorMessage="Wrong data in product name field"
                                                              value="${productWeb.nameEdit}" />
                                             </td>
-                                            <td id="col3">
+                                            <td class="col3">
                                                 <h:selectOneMenu required="true"
                                                                  requiredMessage="Please select category for this product"
                                                                  value="${productWeb.idCategoryEdit}">
@@ -97,13 +97,13 @@
                                         </h:form>
                                     </c:when>
                                     <c:otherwise>
-                                        <td id="col1">${p.id}</td>
-                                        <td id="col2">${p.name}</td>
-                                        <td id="col3">${p.category.name}</td>
-                                        <td id="col4">${p.price}</td>
-                                        <td id="col5">${p.tax.rate}</td>
-                                        <td id="col6">${p.priceWithTax}</td>
-                                        <td id="col7">
+                                        <td class="col1">${p.id}</td>
+                                        <td class="col2">${p.name}</td>
+                                        <td class="col3">${p.category.name}</td>
+                                        <td class="col4">${p.price}</td>
+                                        <td class="col5">${p.tax.rate}</td>
+                                        <td class="col6">${p.priceWithTax}</td>
+                                        <td class="col7">
                                             <h:form>
                                                 <h:link value="Edit">
                                                     <f:param name="id" value="${p.id}" />
@@ -125,14 +125,14 @@
                     <tfoot>
                         <tr>
                             <h:form>
-                                <td id="col1"></td>
-                                <td id="col2">
+                                <td class="col1"></td>
+                                <td class="col2">
                                     <h:inputText required="true"
                                                  requiredMessage="Product name is required"
                                                  validatorMessage="Wrong data in product name field"
                                                  value="${productWeb.name}" />
                                 </td>                                
-                                <td id="col3">
+                                <td class="col3">
                                     <h:selectOneMenu required="true"
                                                      requiredMessage="Please select category for this product"
                                                      value="${productWeb.idCategory}">
@@ -142,7 +142,7 @@
                                                        itemValue="${p.id}" />
                                     </h:selectOneMenu>
                                 </td>
-                                <td id="col4">
+                                <td class="col4">
                                     <h:inputText id="priceNew"
                                                  required="true"
                                                  requiredMessage="Price field is required"
@@ -150,7 +150,7 @@
                                                  value="${productWeb.price}"
                                                  onkeyup="calcPrice(this.form, false, 'New')" />
                                 </td>
-                                <td id="col5">
+                                <td class="col5">
                                     <h:selectOneMenu id="taxNew"
                                                      value="${productWeb.idTax}"
                                                      required="true"
@@ -162,7 +162,7 @@
                                                        itemValue="${t.id}" />
                                     </h:selectOneMenu>
                                 </td>
-                                <td id="col6">
+                                <td class="col6">
                                     <h:inputText id="priceWithTaxNew"
                                                  required="true"
                                                  requiredMessage="Price with tax field is required"
@@ -170,7 +170,7 @@
                                                  value="${productWeb.priceWithTax}"
                                                  onkeyup="calcPrice(this.form, true, 'New')" />
                                 </td>
-                                <td id="col7">
+                                <td class="col7">
                                     <h:commandLink action="${productWeb.add()}" 
                                                    value="Add" />
                                 </td>
