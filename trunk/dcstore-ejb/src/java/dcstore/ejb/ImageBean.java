@@ -77,4 +77,18 @@ public class ImageBean implements ImageBeanLocal {
 
         image.setCover(true);
     }
+
+    @Override
+    public Long getCoverId(Long idProduct) {
+        Long idImage = 0L;
+
+        try {
+            ImageEntity image;
+            image = (ImageEntity) em.createNamedQuery("image.getCoverForProduct").setParameter("id", idProduct).getSingleResult();
+            idImage = image.getId();
+        } catch (Exception e) {            
+        }
+        
+        return idImage;
+    }
 }

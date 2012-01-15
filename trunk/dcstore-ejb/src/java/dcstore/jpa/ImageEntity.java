@@ -31,7 +31,11 @@ import javax.validation.constraints.NotNull;
                           "from ImageEntity i "+
                           "where i.product.id=:id "+
                           "order by i.position"),
-        @NamedQuery(name="image.getById", query="select i from ImageEntity i where i.id=:id")
+        @NamedQuery(name="image.getById", query="select i from ImageEntity i where i.id=:id"),
+        @NamedQuery(name="image.getCoverForProduct",
+                    query="select i "+
+                          "from ImageEntity i "+
+                          "where i.product.id=:id and i.cover=true")
 })
 public class ImageEntity implements Serializable {
     private static final long serialVersionUID = 1L;
