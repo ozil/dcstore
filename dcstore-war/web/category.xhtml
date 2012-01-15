@@ -25,16 +25,11 @@
                         <h:dataTable value="${categoryWeb.products}"
                                      var="p">
                             <h:column>
-                                <f:facet name="header">
-                                    Product name
-                                </f:facet>
-                                ${p.name}
+                                <h:graphicImage width="150"
+                                                url="${imagesWeb.getCoverURL(p.id)}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header">
-                                    Price
-                                </f:facet>
-                                ${p.price}
+                                ${p.priceWithTax}
                             </h:column>
                             <h:column>
                                 <h:form>

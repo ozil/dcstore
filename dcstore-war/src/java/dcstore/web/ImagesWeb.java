@@ -15,6 +15,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.apache.commons.io.FilenameUtils;
@@ -36,6 +37,16 @@ public class ImagesWeb {
     private ImageBeanLocal imageBean;
     @EJB
     private ProductBeanLocal productBean;
+    @ManagedProperty(value="#{resource['img:no_image.jpg']}")
+    private String noImage;
+
+    public String getNoImage() {
+        return noImage;
+    }
+
+    public void setNoImage(String noImage) {
+        this.noImage = noImage;
+    }
 
     public UploadedFile getFile() {
         return file;
@@ -84,13 +95,19 @@ public class ImagesWeb {
         path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
         return path;
     }
-
-    public String getImgURL(Long idProduct, Long idImage) {
+    
+    public String getImgURLPrefix() {
         String path;
         path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgurl");
         if (!path.endsWith("/")) {
             path += "/";
         }
+        return path;
+    }
+
+    public String getImgURL(Long idProduct, Long idImage) {
+        String path;
+        path = this.getImgURLPrefix();
         path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
 
         return path;
@@ -98,7 +115,7 @@ public class ImagesWeb {
 
     public void add() {
         Long idImage = -1L;
-        
+
         try {
             if (!FilenameUtils.getExtension(file.getName()).equals("jpg")) {
                 throw new Exception("Only jpg files are supported");
@@ -107,7 +124,7 @@ public class ImagesWeb {
             if (this.getIdProduct() == null) {
                 throw new Exception("Could not read id product");
             }
-            
+
             idImage = imageBean.add(this.getIdProduct());
             if (idImage <= 0) {
                 throw new Exception("Getting new image id failed");
@@ -118,13 +135,13 @@ public class ImagesWeb {
             out.close();
         } catch (Exception e) {
             try {
-                if (idImage>0) {
+                if (idImage > 0) {
                     imageBean.del(idImage);
                 }
             } catch (Exception ex) {
                 FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Rollbacking image from db failed"));
             }
-            
+
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("File upload error: " + e.getMessage()));
         }
     }
@@ -148,7 +165,7 @@ public class ImagesWeb {
 
         return images;
     }
-    
+
     public void del() {
         Long idImage = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
         try {
@@ -160,20 +177,39 @@ public class ImagesWeb {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting image"));
         }
     }
-    
+
     public boolean isCover(Long idImage) {
         ImageEntity image;
         image = imageBean.get(idImage);
         return image.isCover();
     }
-    
+
     public void toggleCover() {
         Long idImage;
         try {
-            idImage=Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            idImage = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
             imageBean.toggleCover(idImage);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while changing cover flag"));
         }
+    }
+
+    public String getCoverURL(Long idProduct) {
+        Long idImage = 0L;
+        
+        try {
+            idImage = imageBean.getCoverId(idProduct);
+        } catch (Exception e) {
+        }
+        
+        String path;
+        
+        if (idImage>0)
+            path = this.getImgURL(idProduct, idImage);
+        else {            
+            path = noImage;
+        }
+        
+        return path;
     }
 }

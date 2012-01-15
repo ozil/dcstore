@@ -28,4 +28,5 @@ public interface ImageBeanLocal {
     
     void toggleCover(Long idImage);
     
+    Long getCoverId(Long idProduct);
 }

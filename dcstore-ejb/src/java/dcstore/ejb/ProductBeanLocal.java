@@ -24,5 +24,5 @@ public interface ProductBeanLocal {
 
     void edit(Long id, String name, Long idCategory, double price, Long idTax);
 
-    void del(Long id);
+    void del(Long id);        
 }
