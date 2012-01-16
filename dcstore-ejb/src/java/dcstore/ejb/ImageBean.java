@@ -86,9 +86,9 @@ public class ImageBean implements ImageBeanLocal {
             ImageEntity image;
             image = (ImageEntity) em.createNamedQuery("image.getCoverForProduct").setParameter("id", idProduct).getSingleResult();
             idImage = image.getId();
-        } catch (Exception e) {            
+        } catch (Exception e) {
         }
-        
+
         return idImage;
     }
 }

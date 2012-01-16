@@ -20,20 +20,19 @@ public class DescriptionBean implements DescriptionBeanLocal {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void set(Long idProduct, String body) {
-        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", idProduct).getSingleResult();       
+        ProductEntity product = (ProductEntity) em.createNamedQuery("product.getById").setParameter("id", idProduct).getSingleResult();
         DescriptionEntity desc;
         desc = product.getDescription();
-        if (desc==null) {
+        if (desc == null) {
             desc = new DescriptionEntity();
-            desc.setProduct(product);
             desc.setBody(body);
+            product.setDescription(desc);
             em.persist(desc);
+        } else {
+            desc.setBody(body);
         }
-        else
-            desc.setBody(body);        
     }
-    
 }

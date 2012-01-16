@@ -61,5 +61,5 @@ public class ProductBean implements ProductBeanLocal {
         product.setCategory(category);
         product.setPrice(price);
         product.setTax(tax);
-    }        
+    }
 }

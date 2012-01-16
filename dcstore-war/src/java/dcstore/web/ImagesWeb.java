@@ -37,7 +37,7 @@ public class ImagesWeb {
     private ImageBeanLocal imageBean;
     @EJB
     private ProductBeanLocal productBean;
-    @ManagedProperty(value="#{resource['img:no_image.jpg']}")
+    @ManagedProperty(value = "#{resource['img:no_image.jpg']}")
     private String noImage;
 
     public String getNoImage() {
@@ -95,7 +95,7 @@ public class ImagesWeb {
         path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
         return path;
     }
-    
+
     public String getImgURLPrefix() {
         String path;
         path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgurl");
@@ -196,20 +196,20 @@ public class ImagesWeb {
 
     public String getCoverURL(Long idProduct) {
         Long idImage = 0L;
-        
+
         try {
             idImage = imageBean.getCoverId(idProduct);
         } catch (Exception e) {
         }
-        
+
         String path;
-        
-        if (idImage>0)
+
+        if (idImage > 0) {
             path = this.getImgURL(idProduct, idImage);
-        else {            
+        } else {
             path = noImage;
         }
-        
+
         return path;
     }
 }

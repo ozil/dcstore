@@ -13,7 +13,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface DescriptionBeanLocal {
-    
+
     void set(Long idProduct, String body);
-    
 }

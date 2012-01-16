@@ -23,35 +23,36 @@ import javax.validation.constraints.NotNull;
  * @author dcebula
  */
 @Entity
-@Table(name="dc_images")
+@Table(name = "dc_images")
 @NamedQueries({
-        @NamedQuery(name="image.getAll", query="select i from ImageEntity i order by i.position"),
-        @NamedQuery(name="image.getForProduct",
-                    query="select i "+
-                          "from ImageEntity i "+
-                          "where i.product.id=:id "+
-                          "order by i.position"),
-        @NamedQuery(name="image.getById", query="select i from ImageEntity i where i.id=:id"),
-        @NamedQuery(name="image.getCoverForProduct",
-                    query="select i "+
-                          "from ImageEntity i "+
-                          "where i.product.id=:id and i.cover=true")
+    @NamedQuery(name = "image.getAll", query = "select i from ImageEntity i order by i.position"),
+    @NamedQuery(name = "image.getForProduct",
+    query = "select i "
+    + "from ImageEntity i "
+    + "where i.product.id=:id "
+    + "order by i.position"),
+    @NamedQuery(name = "image.getById", query = "select i from ImageEntity i where i.id=:id"),
+    @NamedQuery(name = "image.getCoverForProduct",
+    query = "select i "
+    + "from ImageEntity i "
+    + "where i.product.id=:id and i.cover=true")
 })
 public class ImageEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_image")
+    @Column(name = "id_image")
     private Long id;
     @ManyToOne
-    @JoinColumn(name="id_product", referencedColumnName="id_product")
+    @JoinColumn(name = "id_product", referencedColumnName = "id_product")
     @NotNull
     private ProductEntity product;
     @NotNull
-    @Column(name="position")
+    @Column(name = "position")
     private int position;
     @NotNull
-    @Column(name="cover")
+    @Column(name = "cover")
     private boolean cover;
 
     public boolean isCover() {
@@ -110,5 +111,4 @@ public class ImageEntity implements Serializable {
     public String toString() {
         return "dcstore.jpa.ImageEntity[ id=" + id + " ]";
     }
-    
 }
