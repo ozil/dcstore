@@ -171,8 +171,8 @@ public class ProductWeb {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting product"));
         }
     }
-    
+
     public void calcPrice() {
-        this.price=5;
-    }   
+        this.price = 5;
+    }
 }

@@ -17,16 +17,16 @@ import javax.ejb.Local;
 public interface ImageBeanLocal {
 
     Long add(Long idProduct);
-    
+
     List<ImageEntity> getAll();
-    
+
     List<ImageEntity> getForProduct(Long idProduct);
-    
+
     void del(Long idImage);
-    
+
     ImageEntity get(Long idImage);
-    
+
     void toggleCover(Long idImage);
-    
+
     Long getCoverId(Long idProduct);
 }

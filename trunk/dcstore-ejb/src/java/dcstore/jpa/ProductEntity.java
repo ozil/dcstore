@@ -59,7 +59,8 @@ public class ProductEntity implements Serializable {
     private TaxEntity tax;
     @OneToMany(mappedBy = "product")
     private List<ImageEntity> images;
-    @OneToOne(mappedBy="product", fetch= FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_description", referencedColumnName = "id_description")
     private DescriptionEntity description;
 
     public DescriptionEntity getDescription() {

@@ -1,7 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+// This file is a part of dcstore project,
+// licensed under GPLv2
+//
+// Dominik Cebula
+// dominikcebula@gmail.com
 package dcstore.web;
 
 import javax.faces.bean.ManagedBean;
@@ -19,16 +20,16 @@ public class InfoBean {
     /** Creates a new instance of InfoBean */
     public InfoBean() {
     }
-    
+
     public String getVersion() {
         String version = null;
-        
+
         try {
-            version=FacesContext.getCurrentInstance().getExternalContext().getInitParameter("version");
+            version = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("version");
         } catch (Exception e) {
-            version="";
+            version = "";
         }
-        
-        return "v"+version;
+
+        return "v" + version;
     }
 }

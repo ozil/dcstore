@@ -23,20 +23,19 @@ import javax.validation.constraints.Size;
  * @author dcebula
  */
 @Entity
-@Table(name="dc_description")
+@Table(name = "dc_description")
 public class DescriptionEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_description")
+    @Column(name = "id_description")
     private Long id;
     @NotNull
-    @Size(min=1, max=10000)
-    @Column(name="body")
+    @Size(min = 1, max = 10000)
+    @Column(name = "body")
     private String body;
-    @NotNull
-    @OneToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="id_product", referencedColumnName="id_product")
+    @OneToOne(mappedBy = "description", fetch = FetchType.LAZY)
     private ProductEntity product;
 
     public ProductEntity getProduct() {
@@ -45,7 +44,7 @@ public class DescriptionEntity implements Serializable {
 
     public void setProduct(ProductEntity product) {
         this.product = product;
-    }        
+    }
 
     public String getBody() {
         return body;
@@ -53,7 +52,7 @@ public class DescriptionEntity implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
-    }    
+    }
 
     public Long getId() {
         return id;
@@ -87,5 +86,4 @@ public class DescriptionEntity implements Serializable {
     public String toString() {
         return "dcstore.jpa.DescriptionEntity[ id=" + id + " ]";
     }
-    
 }
