@@ -21,10 +21,7 @@
 
             <ui:define name="main">
                 <div id="HeaderInfo">${imagesWeb.headerInfo}</div>
-                
-                <h:link value="Go back to product list"
-                        outcome="admin-products.xhtml" />
-                
+                                                
                 <h:form  id="uploadForm" enctype="multipart/form-data">
                     <t:inputFileUpload value="${imagesWeb.file}" />
                     <h:commandButton value="Upload image"
@@ -87,6 +84,10 @@
                         No images found for this product, use upload form above to add pictures.
                     </c:otherwise>
                 </c:choose>
+                
+                <p />
+                <h:link value="Go back to product list"
+                        outcome="admin-products.xhtml" />
             </ui:define>
 
         </ui:composition>
