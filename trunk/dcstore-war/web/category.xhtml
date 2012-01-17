@@ -22,21 +22,34 @@
             <ui:define name="main">
                 <c:choose>
                     <c:when test="${categoryWeb.products.size()>0}">                                    
-                        <h:dataTable value="${categoryWeb.products}"
-                                     var="p">
-                            <h:column>
-                                <h:graphicImage width="150"
-                                                url="${imagesWeb.getCoverURL(p.id)}" />
-                            </h:column>
-                            <h:column>
-                                ${p.priceWithTax}
-                            </h:column>
-                            <h:column>
-                                <h:form>
-                                    <h:commandLink value="Add to cart" />
-                                </h:form>
-                            </h:column>
-                        </h:dataTable>
+                        <c:forEach items="${categoryWeb.products}"
+                                   var="p">
+                            <div class="product">                                
+                                <div class="product_image">
+                                    <h:graphicImage url="${imagesWeb.getCoverURL(p.id)}" />
+                                </div>
+                                <div class="product_info">
+                                    <div class="product_title">
+                                        ${p.name}
+                                    </div>
+                                    <br />
+                                    <div class="product_description">
+                                        ${p.description.body}
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="product_price">
+                                    ${p.priceWithTax}
+                                </div>
+                                <br />
+                                <div class="product_actions">
+                                    <h:form>
+                                        <h:commandLink value="Add to cart" />
+                                    </h:form>
+                                </div>
+                                <div class="clear"></div>
+                            </div>                            
+                        </c:forEach>
                     </c:when>
                     <c:otherwise>
                         No products in this category
