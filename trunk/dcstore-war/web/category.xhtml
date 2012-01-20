@@ -41,10 +41,15 @@
                                 <div class="product_price">
                                     ${p.priceWithTax}
                                 </div>
-                                <br />
+                                <br /><br />
                                 <div class="product_actions">
                                     <h:form>
-                                        <h:commandLink value="Add to cart" />
+                                        <h:commandLink value="Add to cart" /><br />
+                                        <h:link value="Details"
+                                                outcome="product.xhtml">
+                                            <f:param name="id"
+                                                     value="${p.id}" />
+                                        </h:link>
                                     </h:form>
                                 </div>
                                 <div class="clear"></div>
