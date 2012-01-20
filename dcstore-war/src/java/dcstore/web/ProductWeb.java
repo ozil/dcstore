@@ -38,6 +38,15 @@ public class ProductWeb {
     private Long idTaxEdit;
     private double priceWithTax;
     private double priceWithTaxEdit;
+    private ProductEntity product;
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
 
     public double getPriceWithTaxEdit() {
         return priceWithTaxEdit;
@@ -174,5 +183,13 @@ public class ProductWeb {
 
     public void calcPrice() {
         this.price = 5;
+    }
+
+    public void fetchProduct(Long idProduct) {
+        try {
+            product = productBean.getById(idProduct);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching product"));
+        }
     }
 }

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+   This file is a part of dcstore project,
+   licensed under GPLv2
+  
+   Dominik Cebula
+   dominikcebula@gmail.com
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+            
+            
+            <ui:define name="breadcrumb">
+                ${productWeb.fetchProduct(request.getParameter("id"))}
+                <c:set var="p"
+                       value="${productWeb.product}" />
+                Products >> ${p.name}                
+            </ui:define>
+            
+            <ui:define name="main">
+                <div class="product_details">
+                    <div class="product_cover">
+                        <h:graphicImage width="300"
+                                        url="${imagesWeb.getCoverURL(p.id)}" />
+                    </div>
+                    <div class="product_right">
+                        <span class="name">${p.name}</span><br />
+                        <span class="product_price">${p.priceWithTax}</span><br />
+                        <h:link value="Add to cart" />
+                    </div>
+                    <div class="product_bottom">
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
