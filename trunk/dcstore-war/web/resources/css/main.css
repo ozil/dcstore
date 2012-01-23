@@ -220,3 +220,20 @@ a
     color: #625F60;
     font-size: 18px;    
 }
+
+.product_details .product_right .info
+{
+    height: 65px;
+}
+
+.product_details .product_images
+{
+    height: 235px;
+    width: 495px;
+    overflow-y: auto;
+}
+
+.product_details .product_images img
+{
+    cursor: pointer;
+}

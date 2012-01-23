@@ -11,6 +11,7 @@ import dcstore.jpa.ImageEntity;
 import dcstore.jpa.ProductEntity;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -164,6 +165,24 @@ public class ImagesWeb {
         }
 
         return images;
+    }
+
+    public List<String> getImagesURL() {
+        List<String> ret = null;
+
+        try {
+            List<ImageEntity> images = null;
+            images = imageBean.getForProduct(idProduct);
+            ret = new LinkedList<String>();
+
+            for (ImageEntity img : images) {
+                ret.add(this.getImgURL(idProduct, img.getId()));
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching images"));
+        }
+        
+        return ret;
     }
 
     public void del() {

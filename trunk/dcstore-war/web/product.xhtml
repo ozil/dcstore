@@ -28,13 +28,26 @@
             <ui:define name="main">
                 <div class="product_details">
                     <div class="product_cover">
-                        <h:graphicImage width="300"
+                        <h:graphicImage id="image_main"
+                                        width="300"
                                         url="${imagesWeb.getCoverURL(p.id)}" />
                     </div>
                     <div class="product_right">
-                        <span class="name">${p.name}</span><br />
-                        <span class="product_price">${p.priceWithTax}</span><br />
-                        <h:link value="Add to cart" />
+                        <div class="info">
+                            <span class="name">${p.name}</span><br />
+                            <span class="product_price">${p.priceWithTax}</span><br />
+                            <h:link value="Add to cart" />
+                        </div>
+                        
+                        <div class="product_images">
+                            ${imagesWeb.setIdProduct(p.id)}
+                            <c:forEach items="${imagesWeb.getImagesURL()}"
+                                       var="i">
+                                <h:graphicImage onclick="changeMainImage('${i}')"
+                                                height="100"
+                                                url="${i}" />
+                            </c:forEach>
+                        </div>
                     </div>
                     <div class="product_bottom">
                     </div>
