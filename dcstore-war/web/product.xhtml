@@ -41,18 +41,19 @@
                         
                         <div class="product_images">
                             ${imagesWeb.setIdProduct(p.id)}
-                            <c:forEach items="${imagesWeb.getImagesURL()}"
+                            <c:forEach items="${imagesWeb.getImages()}"
                                        var="i">
-                                <h:graphicImage onclick="changeMainImage('${i}')"
+                                <h:graphicImage onclick="changeMainImage('${imagesWeb.getImgURL(p.id, i.id, 'cover')}')"
                                                 height="100"
-                                                url="${i}" />
+                                                url="${imagesWeb.getImgURL(p.id, i.id, 'mini')}" />
                             </c:forEach>
                         </div>
                     </div>
+                    <div class="clear"></div>
                     <div class="product_bottom">
+                        ${p.description.body}
                     </div>
-                    <div class="clear">
-                    </div>
+                    <div class="clear"></div>
                 </div>                
             </ui:define>
 
