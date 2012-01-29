@@ -9,6 +9,11 @@ import dcstore.ejb.ImageBeanLocal;
 import dcstore.ejb.ProductBeanLocal;
 import dcstore.jpa.ImageEntity;
 import dcstore.jpa.ProductEntity;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
@@ -19,6 +24,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
@@ -91,9 +97,9 @@ public class ImagesWeb {
         return path;
     }
 
-    public String getImgPath(Long idProduct, Long idImage) {
+    public String getImgPath(Long idProduct, Long idImage, String mode) {
         String path = this.getImgDir();
-        path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
+        path += idProduct.toString() + "-" + idImage.toString() + "-" + mode + ".jpg";
         return path;
     }
 
@@ -106,10 +112,10 @@ public class ImagesWeb {
         return path;
     }
 
-    public String getImgURL(Long idProduct, Long idImage) {
+    public String getImgURL(Long idProduct, Long idImage, String mode) {
         String path;
         path = this.getImgURLPrefix();
-        path += idProduct.toString() + "-" + idImage.toString() + ".jpg";
+        path += idProduct.toString() + "-" + idImage.toString() + "-" + mode + ".jpg";
 
         return path;
     }
@@ -131,9 +137,14 @@ public class ImagesWeb {
                 throw new Exception("Getting new image id failed");
             }
 
-            FileOutputStream out = new FileOutputStream(this.getImgPath(idProduct, idImage));
+            String imgPath = this.getImgPath(idProduct, idImage, "full");
+            FileOutputStream out = new FileOutputStream(imgPath);
             IOUtils.copy(file.getInputStream(), out);
             out.close();
+
+            this.resizeImage(imgPath, 300, 300, this.getImgPath(idProduct, idImage, "cover"));
+            this.resizeImage(imgPath, 130, 130, this.getImgPath(idProduct, idImage, "category"));
+            this.resizeImage(imgPath, 100, 100, this.getImgPath(idProduct, idImage, "mini"));
         } catch (Exception e) {
             try {
                 if (idImage > 0) {
@@ -167,31 +178,14 @@ public class ImagesWeb {
         return images;
     }
 
-    public List<String> getImagesURL() {
-        List<String> ret = null;
-
-        try {
-            List<ImageEntity> images = null;
-            images = imageBean.getForProduct(idProduct);
-            ret = new LinkedList<String>();
-
-            for (ImageEntity img : images) {
-                ret.add(this.getImgURL(idProduct, img.getId()));
-            }
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching images"));
-        }
-        
-        return ret;
-    }
-
     public void del() {
         Long idImage = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
         try {
-            String path = getImgPath(idProduct, idImage);
-            File f = new File(path);
             imageBean.del(idImage);
-            f.delete();
+            new File(getImgPath(idProduct, idImage, "full")).delete();
+            new File(getImgPath(idProduct, idImage, "cover")).delete();
+            new File(getImgPath(idProduct, idImage, "category")).delete();
+            new File(getImgPath(idProduct, idImage, "mini")).delete();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while deleting image"));
         }
@@ -224,11 +218,56 @@ public class ImagesWeb {
         String path;
 
         if (idImage > 0) {
-            path = this.getImgURL(idProduct, idImage);
+            path = this.getImgURL(idProduct, idImage, "cover");
         } else {
             path = noImage;
         }
 
         return path;
+    }
+
+    public String getCategoryURL(Long idProduct) {
+        Long idImage = 0L;
+
+        try {
+            idImage = imageBean.getCoverId(idProduct);
+        } catch (Exception e) {
+        }
+
+        String path;
+
+        if (idImage > 0) {
+            path = this.getImgURL(idProduct, idImage, "category");
+        } else {
+            path = noImage;
+        }
+
+        return path;
+    }
+
+    private void resizeImage(String inPath, int w, int h, String outPath) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(inPath));
+            int ow, oh;
+            ow = originalImage.getWidth();
+            oh = originalImage.getHeight();
+            double ratio = (double) ow / (double) oh;
+            int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+            int ch = (int) Math.round(w / ratio);
+
+            BufferedImage resizedImage = new BufferedImage(w, h, type);
+            Graphics2D g = resizedImage.createGraphics();
+            g.setComposite(AlphaComposite.Src);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setColor(Color.white);
+            g.fillRect(0, 0, w, h);
+            g.drawImage(originalImage, 0, (int) (((float) h - (float) ch) / 2), w, ch, null);
+            g.dispose();
+            ImageIO.write(resizedImage, "jpg", new File(outPath));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while resizeing image: " + e.getMessage()));
+        }
     }
 }
