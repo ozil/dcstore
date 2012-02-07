@@ -19,10 +19,10 @@
                 <div class="header">Categories</div>
                 <div class="body">
                     <ul>
-                        <c:forEach items="${categoryWeb.all}" var="c">
+                        <c:forEach items="#{categoryWeb.all}" var="c">
                             <li>
-                                <h:link outcome="category.xhtml" value="${c.name}">
-                                    <f:param name="id" value="${c.id}" />
+                                <h:link outcome="category.xhtml" value="#{c.name}">
+                                    <f:param name="id" value="#{c.id}" />
                                 </h:link>
                             </li>
                         </c:forEach>

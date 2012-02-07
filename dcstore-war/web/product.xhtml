@@ -19,39 +19,41 @@
             
             
             <ui:define name="breadcrumb">
-                ${productWeb.fetchProduct(request.getParameter("id"))}
+                #{productWeb.fetchProduct(request.getParameter("id"))}
                 <c:set var="p"
-                       value="${productWeb.product}" />
-                Products >> ${p.name}                
+                       value="#{productWeb.product}" />
+                Products >> #{p.name}                
             </ui:define>
             
             <ui:define name="main">
+                #{settingsWeb.Load()}
+                
                 <div class="product_details">
                     <div class="product_cover">
                         <h:graphicImage id="image_main"
                                         width="300"
-                                        url="${imagesWeb.getCoverURL(p.id)}" />
+                                        url="#{imagesWeb.getCoverURL(p.id)}" />
                     </div>
                     <div class="product_right">
                         <div class="info">
-                            <span class="name">${p.name}</span><br />
-                            <span class="product_price">${p.priceWithTax}</span><br />
+                            <span class="name">#{p.name}</span><br />
+                            <span class="product_price">#{p.priceWithTax} #{settingsWeb.currency}</span><br />
                             <h:link value="Add to cart" />
                         </div>
                         
                         <div class="product_images">
-                            ${imagesWeb.setIdProduct(p.id)}
-                            <c:forEach items="${imagesWeb.getImages()}"
+                            #{imagesWeb.setIdProduct(p.id)}
+                            <c:forEach items="#{imagesWeb.getImages()}"
                                        var="i">
-                                <h:graphicImage onclick="changeMainImage('${imagesWeb.getImgURL(p.id, i.id, 'cover')}')"
+                                <h:graphicImage onclick="changeMainImage('#{imagesWeb.getImgURL(p.id, i.id, 'cover')}')"
                                                 height="100"
-                                                url="${imagesWeb.getImgURL(p.id, i.id, 'mini')}" />
+                                                url="#{imagesWeb.getImgURL(p.id, i.id, 'mini')}" />
                             </c:forEach>
                         </div>
                     </div>
                     <div class="clear"></div>
                     <div class="product_bottom">
-                        ${p.description.body}
+                        #{p.description.body}
                     </div>
                     <div class="clear"></div>
                 </div>                

@@ -16,30 +16,31 @@
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="breadcrumb">
-                ${categoryWeb.currentName}
+                #{categoryWeb.currentName}
             </ui:define>
             
             <ui:define name="main">
+                #{settingsWeb.Load()}
                 <c:choose>
-                    <c:when test="${categoryWeb.products.size()>0}">                                    
-                        <c:forEach items="${categoryWeb.products}"
+                    <c:when test="#{categoryWeb.products.size()>0}">                                    
+                        <c:forEach items="#{categoryWeb.products}"
                                    var="p">
                             <div class="product">                                
                                 <div class="product_image">
-                                    <h:graphicImage url="${imagesWeb.getCategoryURL(p.id)}" />
+                                    <h:graphicImage url="#{imagesWeb.getCategoryURL(p.id)}" />
                                 </div>
                                 <div class="product_info">
                                     <div class="product_title">
-                                        ${p.name}
+                                        #{p.name}
                                     </div>
                                     <br />
                                     <div class="product_description">
-                                        ${p.description.body}
+                                        #{p.description.body}
                                     </div>
                                     <div class="clear"></div>
                                 </div>
                                 <div class="product_price">
-                                    ${p.priceWithTax}
+                                    #{p.priceWithTax} #{settingsWeb.currency}
                                 </div>
                                 <br /><br />
                                 <div class="product_actions">
@@ -48,7 +49,7 @@
                                         <h:link value="Details"
                                                 outcome="product.xhtml">
                                             <f:param name="id"
-                                                     value="${p.id}" />
+                                                     value="#{p.id}" />
                                         </h:link>
                                     </h:form>
                                 </div>
