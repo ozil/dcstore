@@ -34,6 +34,13 @@ public class CartWeb {
     /** Creates a new instance of CartWeb */
     public CartWeb() {
     }
+    
+    public int find(ProductEntity product) {
+        for (int i=0;i<products.size();i++)
+            if (products.get(i).equals(product))
+                return i;
+        return -1;
+    }
 
     public void addProduct() {
         Long idProduct = 0L;
@@ -41,7 +48,7 @@ public class CartWeb {
 
         try {
             ProductEntity product = productBean.getById(idProduct);
-            int idx = products.indexOf(product);
+            int idx = find(product);
             if (idx == -1) {
                 products.add(new CartPositionWeb(product, 1));
             } else {

@@ -10,7 +10,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">    
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">    
     <h:body>
         <div class="module" id="cart">
             <div class="header">Cart</div>
@@ -25,7 +26,11 @@
                                      id="cart-products"
                                      columnClasses="name,qty">
                             <h:column>
-                                #{p.product.name}
+                                <h:link value="#{p.product.name}"
+                                        outcome="product.xhtml">
+                                    <f:param name="id"
+                                             value="#{p.product.id}" />
+                                </h:link>
                             </h:column>
                             <h:column>
                                 #{p.qty}
