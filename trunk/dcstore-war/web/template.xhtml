@@ -19,10 +19,11 @@
     <h:body>
         <div id="wrapper">
             <div id="wrapperMain">
-                <div id="top">
+                <div id="top">                    
                     <ui:include src="top.xhtml" />
                 </div>
                 <div id="left">
+                    <ui:include src="cart.xhtml" />
                     <ui:include src="categories.xhtml" />
                 </div>
                 <div id="breadcrumb">
@@ -30,10 +31,10 @@
                 </div>
                 <div id="main">
                     <ui:insert name="main" />
-                </div>
+                </div>                
             </div>
         </div>
-        
+
         <div id="footer">
             dcstore #{infoBean.version}
         </div>

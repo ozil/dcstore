@@ -9,7 +9,7 @@ import dcstore.jpa.CategoryEntity;
 import dcstore.jpa.ProductEntity;
 import dcstore.jpa.TaxEntity;
 import java.util.List;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author dcebula
  */
-@Stateful
+@Stateless
 public class ProductBean implements ProductBeanLocal {
 
     @PersistenceContext

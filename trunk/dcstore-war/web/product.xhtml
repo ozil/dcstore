@@ -11,23 +11,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
 
         <ui:composition template="./template.xhtml">
-            
-            
+
+
             <ui:define name="breadcrumb">
                 #{productWeb.fetchProduct(request.getParameter("id"))}
                 <c:set var="p"
                        value="#{productWeb.product}" />
                 Products >> #{p.name}                
             </ui:define>
-            
+
             <ui:define name="main">
                 #{settingsWeb.Load()}
-                
+
                 <div class="product_details">
                     <div class="product_cover">
                         <h:graphicImage id="image_main"
@@ -38,11 +39,15 @@
                         <div class="info">
                             <span class="name">#{p.name}</span><br />
                             <span class="product_price">#{p.priceWithTax} #{settingsWeb.currency}</span><br />
-                            <h:link value="Add to cart" />
+                            <h:form>
+                                <h:commandLink value="Add to cart"
+                                               action="#{cartWeb.addProduct()}">
+                                    <f:param name="id" value="#{p.id}" />
+                                </h:commandLink>
+                            </h:form>
                         </div>
-                        
+
                         <div class="product_images">
-                            #{imagesWeb.setIdProduct(p.id)}
                             <c:forEach items="#{imagesWeb.getImages()}"
                                        var="i">
                                 <h:graphicImage onclick="changeMainImage('#{imagesWeb.getImgURL(p.id, i.id, 'cover')}')"
