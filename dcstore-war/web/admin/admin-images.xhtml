@@ -21,15 +21,15 @@
 
             <ui:define name="main">
                 <div id="HeaderInfo">#{imagesWeb.headerInfo}</div>
-                                                
+
                 <h:form  id="uploadForm" enctype="multipart/form-data">
                     <t:inputFileUpload value="#{imagesWeb.file}" />
                     <h:commandButton value="Upload image"
                                      action="#{imagesWeb.add()}" />
-                    
+
                     <h:messages for="uploadForm" />
                 </h:form>
-                
+
                 <c:choose>
                     <c:when test="#{imagesWeb.images.size()>0}">
                         <h:dataTable id="tbl_images"
@@ -84,7 +84,7 @@
                         No images found for this product, use upload form above to add pictures.
                     </c:otherwise>
                 </c:choose>
-                
+
                 <p />
                 <h:link value="Go back to product list"
                         outcome="admin-products.xhtml" />

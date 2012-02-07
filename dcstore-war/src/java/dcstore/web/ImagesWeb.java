@@ -16,7 +16,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -168,8 +168,11 @@ public class ImagesWeb {
 
     public List<ImageEntity> getImages() {
         List<ImageEntity> images = null;
+        Long idProduct = 0L;
 
         try {
+            idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+
             images = imageBean.getForProduct(idProduct);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage("Error while fetching images"));
@@ -258,9 +261,9 @@ public class ImagesWeb {
             BufferedImage resizedImage = new BufferedImage(w, h, type);
             Graphics2D g = resizedImage.createGraphics();
             g.setComposite(AlphaComposite.Src);
-            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
-            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g.setColor(Color.white);
             g.fillRect(0, 0, w, h);
             g.drawImage(originalImage, 0, (int) (((float) h - (float) ch) / 2), w, ch, null);

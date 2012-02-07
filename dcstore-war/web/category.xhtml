@@ -18,7 +18,7 @@
             <ui:define name="breadcrumb">
                 #{categoryWeb.currentName}
             </ui:define>
-            
+
             <ui:define name="main">
                 #{settingsWeb.Load()}
                 <c:choose>
@@ -45,7 +45,12 @@
                                 <br /><br />
                                 <div class="product_actions">
                                     <h:form>
-                                        <h:commandLink value="Add to cart" /><br />
+                                        <h:commandLink value="Add to cart"
+                                                       action="#{cartWeb.addProduct()}">
+                                            <f:param name="id"
+                                                     value="#{p.id}" />
+                                        </h:commandLink>
+                                        <br />
                                         <h:link value="Details"
                                                 outcome="product.xhtml">
                                             <f:param name="id"
@@ -54,7 +59,7 @@
                                     </h:form>
                                 </div>
                                 <div class="clear"></div>
-                            </div>                            
+                            </div>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>

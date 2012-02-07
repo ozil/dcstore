@@ -143,6 +143,8 @@ a
     padding: 5px;    
     border: 1px solid #B3B3B3;
     border-bottom: none;
+    height: 132px;
+    overflow: hidden;
 }
 
 .product img
@@ -236,4 +238,20 @@ a
 .product_details .product_images img
 {
     cursor: pointer;
+}
+
+div#cart div.body
+{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#cart-products
+{
+    width: 100%;
+}
+
+#cart-products .qty
+{
+    text-align: right;
 }
