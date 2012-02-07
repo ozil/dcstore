@@ -17,14 +17,14 @@
         <ui:composition template="./admin-template.xhtml">
 
             <ui:define name="main">
-                <div id="HeaderInfo">${descriptionWeb.headerInfo}</div>
+                <div id="HeaderInfo">#{descriptionWeb.headerInfo}</div>
                 
                 <h:form>
-                    <h:inputTextarea value="${descriptionWeb.desc}"
+                    <h:inputTextarea value="#{descriptionWeb.desc}"
                                      cols="80"
                                      rows="20" /><br />
                     <h:commandButton value="Save"
-                                     action="${descriptionWeb.save()}" />
+                                     action="#{descriptionWeb.save()}" />
                     &nbsp;
                     <h:link outcome="admin-products.xhtml"
                             value="Cancel" />

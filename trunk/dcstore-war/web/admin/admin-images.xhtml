@@ -20,32 +20,32 @@
         <ui:composition template="./admin-template.xhtml">
 
             <ui:define name="main">
-                <div id="HeaderInfo">${imagesWeb.headerInfo}</div>
+                <div id="HeaderInfo">#{imagesWeb.headerInfo}</div>
                                                 
                 <h:form  id="uploadForm" enctype="multipart/form-data">
-                    <t:inputFileUpload value="${imagesWeb.file}" />
+                    <t:inputFileUpload value="#{imagesWeb.file}" />
                     <h:commandButton value="Upload image"
-                                     action="${imagesWeb.add()}" />
+                                     action="#{imagesWeb.add()}" />
                     
                     <h:messages for="uploadForm" />
                 </h:form>
                 
                 <c:choose>
-                    <c:when test="${imagesWeb.images.size()>0}">
+                    <c:when test="#{imagesWeb.images.size()>0}">
                         <h:dataTable id="tbl_images"
-                                     value="${imagesWeb.images}"
+                                     value="#{imagesWeb.images}"
                                      var="img">
                             <h:column headerClass="col1">
                                 <f:facet name="header">
                                     id
                                 </f:facet>
-                                ${img.id}
+                                #{img.id}
                             </h:column>
                             <h:column headerClass="col2">
                                 <f:facet name="header">
                                     image
                                 </f:facet>
-                                <h:graphicImage value="${imagesWeb.getImgURL(img.product.id, img.id, 'mini')}"
+                                <h:graphicImage value="#{imagesWeb.getImgURL(img.product.id, img.id, 'mini')}"
                                                 width="100" />
                             </h:column>
                             <h:column headerClass="col3">
@@ -53,10 +53,10 @@
                                     cover
                                 </f:facet>                                
                                 <h:form>
-                                    <h:commandLink value="${imagesWeb.isCover(img.id)==true ? 'Yes' : 'No'}"
-                                                   action="${imagesWeb.toggleCover()}">
+                                    <h:commandLink value="#{imagesWeb.isCover(img.id)==true ? 'Yes' : 'No'}"
+                                                   action="#{imagesWeb.toggleCover()}">
                                         <f:param name="id"
-                                                 value="${img.id}" />
+                                                 value="#{img.id}" />
                                     </h:commandLink>
                                 </h:form>                                
                             </h:column>
@@ -64,7 +64,7 @@
                                 <f:facet name="header">
                                     position
                                 </f:facet>
-                                ${img.position}
+                                #{img.position}
                             </h:column>
                             <h:column headerClass="col5">
                                 <f:facet name="header">
@@ -73,8 +73,8 @@
                                 <h:form>
                                     <h:commandLink value="Delete"
                                                    onclick="return confirm('Are you sure you want to delete this image?')"
-                                                   action="${imagesWeb.del()}">
-                                        <f:param name="id" value="${img.id}" />
+                                                   action="#{imagesWeb.del()}">
+                                        <f:param name="id" value="#{img.id}" />
                                     </h:commandLink>
                                 </h:form>
                             </h:column>

@@ -21,20 +21,40 @@
                 <fieldset id="tax">
                     <label>Tax rates</label>
                     <h:form>
-                        <h:selectManyListbox value="${taxWeb.idDelete}">
-                            <f:selectItems value="${taxWeb.all}"
+                        #{settingsWeb.Load()}
+                        <h:selectManyListbox value="#{taxWeb.idDelete}">
+                            <f:selectItems value="#{taxWeb.all}"
                                            var="t"
-                                           itemValue="${t.id}"
-                                           itemLabel="${t.rate}" />
+                                           itemValue="#{t.id}"
+                                           itemLabel="#{t.rate}" />
                         </h:selectManyListbox><br />
                         <h:inputText size="8"                                     
-                                     value="${taxWeb.rateNew}"
+                                     value="#{taxWeb.rateNew}"
                                      required="true"
                                      requiredMessage="Tax field required" />
                         <h:commandButton value="Add"
-                                         action="${taxWeb.add()}" />
+                                         action="#{taxWeb.add()}" />
                         <h:commandButton value="Delete"
-                                         action="${taxWeb.del()}" />
+                                         action="#{taxWeb.del()}" />
+                    </h:form>
+                </fieldset>
+                <fieldset id="settings">
+                    <label>Settings</label>
+                    <h:form>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Currency</td>
+                                    <td><h:inputText value="#{settingsWeb.currency}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:commandButton value="Save"
+                                                         action="#{settingsWeb.Save()}" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </h:form>
                 </fieldset>
             </ui:define>
