@@ -37,18 +37,19 @@ public class CartPositionWeb {
         this.qty = qty;
     }
 
-    public boolean equasl(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (o instanceof ProductEntity) {
             ProductEntity p = (ProductEntity) o;
-            return this.product == p;
+            return this.product.equals(p);
         } else if (o instanceof ProductEntity) {
             CartPositionWeb c = (CartPositionWeb) o;
-            return this.product == c.product;
+            return this.product.equals(c.product);
         } else {
             return false;
         }
     }
-
+    
     public void incQty() {
         ++this.qty;
     }
