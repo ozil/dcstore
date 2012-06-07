@@ -196,7 +196,7 @@ a
     clear: both;
 }
 
-.product:nth-child(1)
+.product:nth-child(odd)
 {
     background-color: #E8EEF5;
 }

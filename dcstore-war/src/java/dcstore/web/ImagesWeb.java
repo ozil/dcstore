@@ -71,7 +71,9 @@ public class ImagesWeb {
         this.idProduct = idProduct;
     }
 
-    /** Creates a new instance of ImagesWeb */
+    /**
+     * Creates a new instance of ImagesWeb
+     */
     public ImagesWeb() {
     }
 
@@ -171,7 +173,11 @@ public class ImagesWeb {
         Long idProduct = 0L;
 
         try {
-            idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            if (this.idProduct > 0) {
+                idProduct = this.idProduct;
+            } else {
+                idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+            }
 
             images = imageBean.getForProduct(idProduct);
         } catch (Exception e) {

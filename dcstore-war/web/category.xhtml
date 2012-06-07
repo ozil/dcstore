@@ -47,8 +47,10 @@
                                     <h:form>
                                         <h:commandLink value="Add to cart"
                                                        action="#{cartWeb.addProduct()}">
-                                            <f:param name="id"
+                                            <f:param name="pid"
                                                      value="#{p.id}" />
+                                            <f:param name="id"
+                                                     value="#{param['id']}" />
                                         </h:commandLink>
                                         <br />
                                         <h:link value="Details"
