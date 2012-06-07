@@ -31,20 +31,31 @@ public class CartWeb {
         this.products = products;
     }
 
-    /** Creates a new instance of CartWeb */
+    /**
+     * Creates a new instance of CartWeb
+     */
     public CartWeb() {
     }
-    
+
     public int find(ProductEntity product) {
-        for (int i=0;i<products.size();i++)
-            if (products.get(i).equals(product))
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).equals(product)) {
                 return i;
+            }
+        }
         return -1;
     }
 
     public void addProduct() {
         Long idProduct = 0L;
-        idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+        try {
+            idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pid"));
+        } catch (Exception e) {
+            idProduct = 0L;
+        }
+        if (idProduct == 0) {
+            idProduct = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+        }
 
         try {
             ProductEntity product = productBean.getById(idProduct);
